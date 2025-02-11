@@ -46,7 +46,7 @@
     <div class="forgot-container">
         <h2>Forgot Password</h2>
         <p>Enter your registered email to reset your password.</p>
-        <form action="ForgotPasswordServlet" method="post">
+        <form action="changpassword" method="get">
             <input type="email" name="email" placeholder="Enter your email" required>
             <button type="submit">Reset Password</button>
         </form>
