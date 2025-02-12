@@ -20,6 +20,7 @@ public class UserEntity {
 	private String contactNum;
 	private String gender;
 	private String role;
+//	private Boolean true;
 
 	public Integer getUserId() {
 		return userId;

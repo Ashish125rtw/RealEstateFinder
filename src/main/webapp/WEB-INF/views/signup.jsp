@@ -59,18 +59,48 @@
         .login-link a:hover {
             text-decoration: underline;
         }
+        .gender-options {
+   	 		display: flex;
+    		align-items: center;
+    		gap: 10px; /* Adds spacing between options */
+		}
+
+		.gender-options label {
+    		display: flex;
+    		align-items: center;
+    		gap: 5px;
+		}
+        
     </style>
 </head>
 <body>
     <div class="signup-container">
         <h1>Create an Account</h1>
         <form action="saveuser" method="post">
-            <input type="text" name="fullname" placeholder="Full Name" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Sign Up</button>
-        </form>
+    	<input type="text" name="firstName" placeholder="First Name" required>
+        <input type="text" name="lastName" placeholder="Last Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="contactNum" placeholder="Contact Number" required>
+    	<input type="password" name="password" placeholder="Password" required>
+    	
+    	<div class="gender-options">
+    	<label>Gender :</label>
+    	<label>
+        	<input type="radio" name="gender" value="Male" required> Male
+    	</label>
+    	<label>
+        	<input type="radio" name="gender" value="Female" required> Female
+    	</label>
+    	<label>
+        	<input type="radio" name="gender" value="Other" required> Other
+    	</label>
+		</div>
+    
+        <input type="text" name="role" placeholder="Role" required>
+        <button type="submit">Sign Up</button>
+        
+</form>
+        
         <p class="login-link">Already have an account? </p>
         <a href="login">Click here for login</a>
         
