@@ -2,12 +2,18 @@ package com.grownited.controller;
 
 import org.springframework.stereotype.Controller;
 
+
 import org.springframework.web.bind.annotation.*;
 import com.grownited.entity.*;
 
 @Controller
 public class sessionControler {
-
+	
+	@GetMapping({"homepage"})
+	public String homepage() {
+		return "homepage";
+	}
+	
     @GetMapping({"signup"})
     public String signup() {
         return "signup";
