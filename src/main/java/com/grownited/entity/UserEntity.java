@@ -1,5 +1,6 @@
 package com.grownited.entity;
 
+import java.util.*;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,7 +21,8 @@ public class UserEntity {
 	private String contactNum;
 	private String gender;
 	private String role;
-//	private Boolean true;
+	Date createdAt;
+	Boolean Active;;
 
 	public Integer getUserId() {
 		return userId;
