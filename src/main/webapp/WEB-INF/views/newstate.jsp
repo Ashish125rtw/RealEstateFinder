@@ -4,14 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Enter state name</title>
 </head>
 <body>
-	
-	
+
 	<form action="/savestate" method="post">
-    <label for="statename">State Name:</label>
-    <input type="text" id="statename" name="statename" required>
+    <label for="stateName">State Name:</label>
+    <input type="text" id="stateName" name="stateName" required>
     <button type="submit">Save</button>
 </form>
 	

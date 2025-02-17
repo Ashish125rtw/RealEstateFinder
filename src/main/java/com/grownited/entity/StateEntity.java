@@ -3,14 +3,14 @@ package com.grownited.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "state") // Table name in DB
+@Table(name = "state")
 public class StateEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer stateId; // Changed from userId to stateId
+    private Integer stateId;
 
-    private String statename;
+    private String stateName;  // Renamed to match JSP variable
 
     // Getters and Setters
     public Integer getStateId() {
@@ -21,11 +21,11 @@ public class StateEntity {
         this.stateId = stateId;
     }
 
-    public String getStatename() { // Corrected method name
-        return statename;
+    public String getStateName() { // Corrected method name
+        return stateName;
     }
 
-    public void setStatename(String statename) {
-        this.statename = statename;
+    public void setStateName(String stateName) { // Corrected method name
+        this.stateName = stateName;
     }
 }
