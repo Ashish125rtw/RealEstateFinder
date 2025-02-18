@@ -1,13 +1,20 @@
 package com.grownited.controller;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
-
+import com.grownited.repository.*;
 import org.springframework.web.bind.annotation.*;
 import com.grownited.entity.*;
-
+import com.grownited.service.MailService;
 @Controller
 public class sessionControler {
+	
+	@Autowired
+	
+	UserRepository repositoryUser;
+	
+	@Autowired
+	
+	MailService serviceMail;
 	
 	@GetMapping({"homepage"})
 	public String homepage() {
@@ -27,15 +34,11 @@ public class sessionControler {
 
     @PostMapping("saveuser")
     public String saveUser(UserEntity userEntity) {
-//
-		// read
-		System.out.println(userEntity.getFirstName());
-		System.out.println(userEntity.getLastName());
-		System.out.println(userEntity.getGender());
-		System.out.println(userEntity.getEmail());
-		System.out.println(userEntity.getPassword());
-//		return "login";// 
-		
+    // send mail
+    	
+    	repositoryUser.save(userEntity);
+    	
+    	serviceMail.sendWelcomeMail(userEntity.getEmail(), userEntity.getFirstName());
 		 return "redirect:/login";
 	}
 

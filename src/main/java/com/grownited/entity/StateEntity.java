@@ -21,11 +21,11 @@ public class StateEntity {
         this.stateId = stateId;
     }
 
-    public String getStateName() { // Corrected method name
+    public String getStateName() { 
         return stateName;
     }
 
-    public void setStateName(String stateName) { // Corrected method name
+    public void setStateName(String stateName) {
         this.stateName = stateName;
     }
 }
