@@ -68,7 +68,7 @@
 <body>
     <div class="login-container">
         <h1>Welcome Back</h1>
-        <form action="saveuser" method="post">
+        <form action="/saveuser" method="post">
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>

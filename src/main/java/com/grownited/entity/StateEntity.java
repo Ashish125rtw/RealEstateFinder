@@ -10,7 +10,7 @@ public class StateEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer stateId;
 
-    private String stateName;  // Renamed to match JSP variable
+    private String stateName;  
 
     // Getters and Setters
     public Integer getStateId() {

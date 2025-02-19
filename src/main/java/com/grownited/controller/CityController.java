@@ -1,8 +1,9 @@
 package com.grownited.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-
-
+import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,4 +29,15 @@ public class CityController {
         repoCity.save(cityEntity);
         return "redirect:/NewCity";  
     }
+    
+    // List City 
+    @GetMapping("ListCity")
+    public String listCity(Model model) {
+    	List<CityEntity> cityList = repoCity.findAll();
+    	model.addAttribute("cityList",cityList);
+    	return "ListCity";
+    }
+   
+
+    
 }

@@ -26,13 +26,14 @@
             margin-bottom: 20px;
             color: #333;
         }
-        input {
+        input, select {
             width: 100%;
             padding: 10px;
             margin: 8px 0;
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 16px;
+            background: #fff;
         }
         button {
             width: 100%;
@@ -60,50 +61,48 @@
             text-decoration: underline;
         }
         .gender-options {
-   	 		display: flex;
-    		align-items: center;
-    		gap: 10px; /* Adds spacing between options */
-		}
-
-		.gender-options label {
-    		display: flex;
-    		align-items: center;
-    		gap: 5px;
-		}
-        
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+        }
+        .gender-options label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
     </style>
 </head>
 <body>
     <div class="signup-container">
         <h1>Create an Account</h1>
         <form action="saveuser" method="post">
-    	<input type="text" name="firstName" placeholder="First Name" required>
-        <input type="text" name="lastName" placeholder="Last Name" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="text" name="contactNum" placeholder="Contact Number" required>
-    	<input type="password" name="password" placeholder="Password" required>
-    	
-    	<div class="gender-options">
-    	<label>Gender :</label>
-    	<label>
-        	<input type="radio" name="gender" value="Male" required> Male
-    	</label>
-    	<label>
-        	<input type="radio" name="gender" value="Female" required> Female
-    	</label>
-    	<label>
-        	<input type="radio" name="gender" value="Other" required> Other
-    	</label>
-		</div>
-    
-        <input type="text" name="role" placeholder="Role" required>
-        <button type="submit">Sign Up</button>
-        
-</form>
-        
-        <p class="login-link">Already have an account? </p>
-        <a href="login">Click here for login</a>
-        
+            <input type="text" name="firstName" placeholder="First Name" required>
+            <input type="text" name="lastName" placeholder="Last Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="text" name="contactNum" placeholder="Contact Number" required>
+            <input type="password" name="password" placeholder="Password" required>
+
+            <div class="gender-options">
+                <label>Gender :</label>
+                <label><input type="radio" name="gender" value="Male" required> Male</label>
+                <label><input type="radio" name="gender" value="Female" required> Female</label>
+                <label><input type="radio" name="gender" value="Other" required> Other</label>
+            </div>
+
+            <!-- User Role Selection -->
+            <select name="role" required>
+                <option value="" disabled selected>Select Role</option>
+                <option value="Admin">Admin</option>
+                <option value="Buyer">Buyer</option>
+                <option value="Seller">Seller</option>
+                <option value="Agent">Agent</option>
+            </select>
+
+            <button type="submit">Sign Up</button>
+        </form>
+
+        <p class="login-link">Already have an account? <a href="login">Click here for login</a></p>
     </div>
 </body>
 </html>
