@@ -87,4 +87,18 @@ public class sessionControler {
         
         return "login";  // Redirects to login.jsp after successful password change
     }
+    
+    @PostMapping("authenticate")
+    public String authenticate(String email , String password ,  Model model) {
+    	
+    	System.out.println(email);
+    	System.out.println(password);
+    	
+//    	= repositoryUser.findEmail();
+    	
+    	return "login";
+    }
+    
 }
+
+
