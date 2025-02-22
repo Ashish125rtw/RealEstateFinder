@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.grownited.repository.UserRepository;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class UserControler {
@@ -16,5 +18,13 @@ public class UserControler {
 		
 		return "UserHome";
 	}
+	
+	@GetMapping("ViewUser")
+	public String viewUser() {
+		
+		
+		return "ViewUser";
+	}
+	
 	
 }

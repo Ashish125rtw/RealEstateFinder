@@ -93,27 +93,7 @@ public class sessionControler {
     
  // login authentication
     
-//    @PostMapping("authenticate")
-//	public String authenticate(String email, String password,Model model) {
-//		System.out.println(email);
-//		System.out.println(password);
-//
-//		// users -> email,password
-//		Optional<UserEntity> op = repositoryUser.findByEmail(email);
-//		// select * from users where email = :email and password = :password
-//		if (op.isPresent()) {
-//			// true
-//			// email
-//			UserEntity dbUser = op.get();
-//			if (encoder.matches(password, dbUser.getPassword())) {
-//				return "redirect:/UserHome";
-//			}
-//		}
-//		model.addAttribute("error","Invalid Credentials");
-//		return "login";
-//	}
-    
-    
+
     @PostMapping("authenticate")
     public String authenticate(@RequestParam("email") String email, 
                                @RequestParam("password") String password, 
@@ -138,6 +118,23 @@ public class sessionControler {
 
         model.addAttribute("error", "Invalid Credentials");
         return "login";
+    }
+    
+    // ViewUser
+    @GetMapping("/viewUser/{id}")
+    public String viewUser(@PathVariable("id") Integer id, Model model) {
+        Optional<UserEntity> user = repositoryUser.findById(id);
+        if (user.isPresent()) {
+            model.addAttribute("user", user.get());
+            return "ViewUser";
+        }
+        return "redirect:/ListUser"; 
+    }
+    
+    @GetMapping("/deleteUser/{id}")
+    public String deleteUser(@PathVariable("id") Integer id) {
+        repositoryUser.deleteById(id);
+        return "redirect:/ListUser";
     }
 
 }
