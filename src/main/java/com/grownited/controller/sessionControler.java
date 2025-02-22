@@ -1,5 +1,7 @@
 package com.grownited.controller;
-import java.util.List;	
+//import java.lang.foreign.Linker.Option;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -88,17 +90,56 @@ public class sessionControler {
         return "login";  // Redirects to login.jsp after successful password change
     }
     
-    @PostMapping("authenticate")
-    public String authenticate(String email , String password ,  Model model) {
-    	
-    	System.out.println(email);
-    	System.out.println(password);
-    	
-//    	= repositoryUser.findEmail();
-    	
-    	return "login";
-    }
     
+ // login authentication
+    
+//    @PostMapping("authenticate")
+//	public String authenticate(String email, String password,Model model) {
+//		System.out.println(email);
+//		System.out.println(password);
+//
+//		// users -> email,password
+//		Optional<UserEntity> op = repositoryUser.findByEmail(email);
+//		// select * from users where email = :email and password = :password
+//		if (op.isPresent()) {
+//			// true
+//			// email
+//			UserEntity dbUser = op.get();
+//			if (encoder.matches(password, dbUser.getPassword())) {
+//				return "redirect:/UserHome";
+//			}
+//		}
+//		model.addAttribute("error","Invalid Credentials");
+//		return "login";
+//	}
+    
+    
+    @PostMapping("authenticate")
+    public String authenticate(@RequestParam("email") String email, 
+                               @RequestParam("password") String password, 
+                               Model model) {
+        System.out.println("Login Attempt: " + email);
+        
+        Optional<UserEntity> op = repositoryUser.findByEmail(email);
+        
+        if (op.isPresent()) {
+            UserEntity dbUser = op.get();
+            System.out.println("User Found: " + dbUser.getEmail());
+
+            if (encoder.matches(password, dbUser.getPassword())) {
+                System.out.println("Password Matched, Redirecting to UserHome");
+                return "redirect:/UserHome";
+            } else {
+                System.out.println("Incorrect Password");
+            }
+        } else {
+            System.out.println("User Not Found");
+        }
+
+        model.addAttribute("error", "Invalid Credentials");
+        return "login";
+    }
+
 }
 
 

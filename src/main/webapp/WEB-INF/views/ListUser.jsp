@@ -6,7 +6,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Registered Users</title>
-    
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -42,6 +41,7 @@
                 <th>Contact</th>
                 <th>Gender</th>
                 <th>Role</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -54,13 +54,16 @@
                     <td>${m.contactNum}</td>
                     <td>${m.gender}</td>
                     <td>${m.role}</td>
+                    <td>
+                        <a href="viewUser/${m.userId}" class="btn btn-info btn-sm">View</a>
+                        <a href="editUser/${m.userId}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="deleteUser/${m.userId}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
+                    </td>
                 </tr>
             </c:forEach>
         </tbody>
     </table>
 </div>
-
-<!-- Bootstrap JS (Optional for interactive features) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>

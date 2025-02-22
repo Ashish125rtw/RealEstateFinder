@@ -7,6 +7,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 
 @Entity // create table
@@ -23,8 +25,12 @@ public class UserEntity {
 	private String contactNum;
 	private String gender;
 	private String role;
-	Date createdAt;
-	Boolean Active;;
+	
+	 @Temporal(TemporalType.TIMESTAMP)
+	    private Date createdAt = new Date(); // Default value
+
+	    private Boolean active = true; 
+	
 
 	public Integer getUserId() {
 		return userId;
