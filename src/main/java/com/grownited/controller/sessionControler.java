@@ -131,11 +131,32 @@ public class sessionControler {
         return "redirect:/ListUser"; 
     }
     
+    //Delete User
     @GetMapping("/deleteUser/{id}")
     public String deleteUser(@PathVariable("id") Integer id) {
-        repositoryUser.deleteById(id);
-        return "redirect:/ListUser";
+    	repositoryUser.deleteById(id);
+    	return "redirect:/ListUser";
     }
+    
+    
+    // Edit 
+    @GetMapping("/editUser/{id}")
+    public String editUser(@PathVariable("id") Integer id, Model model) {
+        Optional<UserEntity> user = repositoryUser.findById(id);
+        if (user.isPresent()) {
+            model.addAttribute("user", user.get());
+            return "EditUser"; // This will load EditUser.jsp
+        }
+        return "redirect:/ListUser"; // Redirect if user is not found
+    }
+
+    
+    @PostMapping("/updateUser")
+    public String updateUser(@ModelAttribute UserEntity userEntity) {
+        repositoryUser.save(userEntity);  // Updates user in the database
+        return "redirect:/ListUser";  // Redirects back to the user list
+    }
+
 
 }
 
