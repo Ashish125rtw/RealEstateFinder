@@ -27,7 +27,7 @@
     </style>
 </head>
 <body>
-
+<%@ include file="navbar.jsp" %>  
 <div class="container">
     <h2 class="text-primary">Registered Users</h2>
     

@@ -48,5 +48,12 @@ public class AgentController {
     	
     	return "ListAgent";
     }
+	
+
+	@GetMapping("AgentDashboard")
+	public String agentDashboard() {
+		
+		return "AgentDashboard";
+	}
 
 }

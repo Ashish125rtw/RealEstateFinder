@@ -9,31 +9,15 @@
 </head>
 <body>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="homepage">Real Estate Management System</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="homepage">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="properties">Properties</a></li>
-                    <li class="nav-item"><a class="nav-link" href="signup">Sign Up</a></li>
-                    <li class="nav-item"><a class="nav-link" href="login">Login</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <%@ include file="navbar.jsp" %>  <!-- ✅ Include Navbar Here -->
 
     <!-- Hero Section -->
-    <div class="container mt-4">
+    <div class="container mt-4" id="home">
         <div class="row align-items-center">
             <div class="col-md-6">
                 <h1>Find Your Dream Property</h1>
                 <p>Search, Buy, or Rent the best properties at the best prices.</p>
-                <a href="properties" class="btn btn-primary">View Properties</a>
+                <a href="/ListProperty" class="btn btn-primary">View Properties</a>
             </div>
             <div class="col-md-6">
                 <img src="https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?auto=compress&cs=tinysrgb&w=600" 
@@ -42,40 +26,34 @@
         </div>
     </div>
 
-    <!-- Search Bar -->
-    <div class="container mt-4">
-        <form action="searchProperties" method="GET" class="d-flex">
-            <input type="text" name="query" class="form-control me-2" placeholder="Search by city, state, or type...">
-            <button type="submit" class="btn btn-primary">Search</button>
-        </form>
+    <!-- About Us Section -->
+    <div class="container mt-5" id="about">
+        <h2 class="text-center">About Us</h2>
+        <p class="text-center">We are a trusted real estate platform dedicated to helping you find the best properties. Our goal is to connect buyers and sellers with ease, providing a seamless real estate experience. With a wide range of listings and expert insights, we ensure a smooth journey in property transactions.</p>
     </div>
 
-    <!-- Featured Properties -->
-    <div class="container mt-5">
-        <h2 class="text-center mb-4">Featured Properties</h2>
-        <div class="row">
-            <% 
-                String[] propertyTitles = {"Luxury Apartment", "Cozy House", "Modern Villa"};
-                String[] propertyPrices = {"$500,000", "$300,000", "$700,000"};
-                String[] propertyImages = {
-                    "https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?auto=compress&cs=tinysrgb&w=600",
-                    "https://images.pexels.com/photos/106399/pexels-photo-1063949.jpeg?auto=compress&cs=tinysrgb&w=600",
-                    "https://images.pexels.com/photos/1396132/pexels-photo-1396132.jpeg?auto=compress&cs=tinysrgb&w=600"
-                };
-
-                for(int i = 0; i < propertyTitles.length; i++) { 
-            %>
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="<%= propertyImages[i] %>" class="card-img-top" alt="Property">
-                    <div class="card-body">
-                        <h5 class="card-title"><%= propertyTitles[i] %></h5>
-                        <p class="card-text">Price: <%= propertyPrices[i] %></p>
-                        <a href="propertyDetails?id=<%= i+1 %>" class="btn btn-primary">View Details</a>
+    <!-- Contact Us Section -->
+    <div class="container mt-5" id="contact">
+        <h2 class="text-center">Contact Us</h2>
+        <p class="text-center">Have any questions? Get in touch with us!</p>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form action="contact" method="POST">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Your Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
                     </div>
-                </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Your Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
             </div>
-            <% } %>
         </div>
     </div>
 

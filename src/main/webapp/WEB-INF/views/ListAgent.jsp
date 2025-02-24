@@ -41,6 +41,9 @@
 <body>
 
 <div class="container">
+
+<%@ include file="navbar.jsp" %>
+
     <h2>List of Agents</h2>
 
     <div class="table-responsive">

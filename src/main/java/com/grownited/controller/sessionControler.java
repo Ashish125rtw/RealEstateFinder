@@ -11,6 +11,9 @@ import com.grownited.repository.*;
 import org.springframework.web.bind.annotation.*;
 import com.grownited.entity.*;
 import com.grownited.service.MailService;
+
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.ui.Model;
 
 @Controller
@@ -92,23 +95,36 @@ public class sessionControler {
     
     
  // login authentication
-    
 
     @PostMapping("authenticate")
     public String authenticate(@RequestParam("email") String email, 
                                @RequestParam("password") String password, 
-                               Model model) {
-        System.out.println("Login Attempt: " + email);
-        
+                               Model model, HttpSession session) {
+
         Optional<UserEntity> op = repositoryUser.findByEmail(email);
-        
+
         if (op.isPresent()) {
             UserEntity dbUser = op.get();
             System.out.println("User Found: " + dbUser.getEmail());
 
             if (encoder.matches(password, dbUser.getPassword())) {
-                System.out.println("Password Matched, Redirecting to UserHome");
-                return "redirect:/UserHome";
+                session.setAttribute("user", dbUser); // Store user session
+                System.out.println("Password Matched, Redirecting...");
+
+                // Role-based redirection
+                switch (dbUser.getRole()) {
+                    case "Admin":
+                        return "redirect:/AdminDashboard";
+                    case "Buyer":
+                        return "redirect:/BuyerDashboard"; 
+                    case "Seller":
+                        return "redirect:/SellerDashboard";
+                    case "Agent":
+                        return "redirect:/AgentDashboard"; 
+                    default:
+                        model.addAttribute("error", "Please contact Admin (Error Code #0991)");
+                        return "login";
+                }
             } else {
                 System.out.println("Incorrect Password");
             }
@@ -119,7 +135,13 @@ public class sessionControler {
         model.addAttribute("error", "Invalid Credentials");
         return "login";
     }
-    
+
+    @GetMapping("logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/login"; // Redirect to login page after logout
+    }
+
     // ViewUser
     @GetMapping("/viewUser/{id}")
     public String viewUser(@PathVariable("id") Integer id, Model model) {
