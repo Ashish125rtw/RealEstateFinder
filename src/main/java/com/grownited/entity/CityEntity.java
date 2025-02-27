@@ -9,11 +9,19 @@ public class CityEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer cityId; 
-    
     private String cityName; 
+    private Integer stateId;
 
     
-    public Integer getCityId() {
+    public Integer getStateId() {
+		return stateId;
+	}
+
+	public void setStateId(Integer stateId) {
+		this.stateId = stateId;
+	}
+
+	public Integer getCityId() {
         return cityId;
     }
 

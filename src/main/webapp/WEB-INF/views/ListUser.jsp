@@ -13,9 +13,7 @@
         body {
             background-color: #f8f9fa;
         }
-        .container {
-            margin-top: 40px;
-        }
+       
         h2 {
             text-align: center;
             margin-bottom: 20px;

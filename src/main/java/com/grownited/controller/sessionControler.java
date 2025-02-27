@@ -179,6 +179,15 @@ public class sessionControler {
         return "redirect:/ListUser";  // Redirects back to the user list
     }
 
+    //
+    
+    @GetMapping("privacy")
+    
+    public String privacy() {
+    	
+    	return "privacy";
+    }
+    
 
 }
 
