@@ -6,9 +6,18 @@
 <!-- Custom Styles -->
 <style>
     .navbar-custom {
-        background: linear-gradient(90deg, #e3f2fd, #ffffff); /* Light Blue to White */
-        border-bottom: 2px solid #90caf9; /* Subtle bottom border */
-    }
+    background: linear-gradient(90deg, #e3f2fd, #ffffff); /* Light Blue to White */
+    border-bottom: 2px solid #90caf9; /* Subtle bottom border */
+    position: fixed;
+    top: 0; /* Ensures it sticks at the top */
+    left: 0;
+    width: 100%; /* Full width */
+    z-index: 1000; /* Keeps navbar above other content */
+}
+body {
+    padding-top: 70px; /* Adjust this based on navbar height to prevent overlap */
+}
+    
     .nav-link {
         color: #0d47a1 !important; /* Dark Blue */
         font-weight: 500;
@@ -40,8 +49,8 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" href="homepage">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="homepage#about">About Us</a></li>
-                <li class="nav-item"><a class="nav-link" href="homepage#contact">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" href="#aboutus">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 <li class="nav-item"><a class="nav-link" href="/ListProperty">Properties</a></li>
                 <li class="nav-item"><a class="nav-link" href="ListAgent">Agents</a></li>
 

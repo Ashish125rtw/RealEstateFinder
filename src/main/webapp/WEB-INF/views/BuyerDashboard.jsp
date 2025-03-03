@@ -1,101 +1,96 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Buyer Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        /* Navbar */
-        .navbar-custom {
-            background: linear-gradient(90deg, #e3f2fd, #ffffff);
-            border-bottom: 2px solid #90caf9;
-        }
-        .nav-link {
-            color: #0d47a1 !important;
-            font-weight: 500;
-        }
-        .nav-link:hover {
-            color: #1976d2 !important;
-            transform: scale(1.05);
-        }
-        .btn-custom {
-            background-color: #64b5f6;
-            color: white;
-            font-weight: 500;
-        }
-        .btn-custom:hover {
-            background-color: #42a5f5;
-        }
-        /* Sidebar */
-        .sidebar {
-            height: 100vh;
-            background: #f1f8fe;
-            border-right: 2px solid #90caf9;
-            padding-top: 20px;
-        }
-        .sidebar a {
-            color: #0d47a1;
-            font-weight: 500;
-            text-decoration: none;
-            padding: 12px;
-            display: block;
-        }
-        .sidebar a:hover {
-            background: #bbdefb;
-            border-radius: 5px;
-        }
-        .content {
-            padding: 20px;
-        }
-        .card-custom {
-            border-left: 5px solid #64b5f6;
-            background: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-        }
-    </style>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Buyer | Dashboard</title>
+
+<jsp:include page="BuyerCss.jsp"></jsp:include>
+<link href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.min.css" rel="stylesheet"/>
 </head>
-<body class="bg-light">
-    <nav class="navbar navbar-expand-lg navbar-light navbar-custom shadow-sm">
-        <div class="container">
-            <a class="navbar-brand fw-bold text-primary" href="homepage">🏡 Real Estate System</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="profile">⚙️ Profile</a></li>
-                    <li class="nav-item"><a class="nav-link btn btn-custom px-3 ms-2" href="logout">🚪 Logout</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="container-fluid">
-        <div class="row">
-            <nav class="col-md-3 sidebar">
-                <h4 class="text-center text-primary">Buyer Panel</h4>
-                <a href="ListProperty">🏠 View Properties</a>
-                <a href="savedProperties">💾 Saved Properties</a>
-                <a href="searchProperties">🔍 Search Properties</a>
-                <a href="scheduleVisit">📅 Schedule a Visit</a>
-                <a href="contactAgent">📞 Contact an Agent</a>
-                <a href="mortgageCalculator">💰 Mortgage Calculator</a>
-                <a href="purchaseHistory">📜 Purchase History</a>
-                <a href="profileSettings">⚙️ Profile Settings</a>
-            </nav>
-            <main class="col-md-9 content">
-                <div class="card card-custom">
-                    <h2 class="text-center">Welcome, ${user.firstName}</h2>
-                    <p class="text-center text-muted">Find the best properties tailored for you!</p>
-                    <div class="d-flex justify-content-center gap-3">
-                        <a href="viewProperties" class="btn btn-success">🏠 Browse Properties</a>
-                        <a href="scheduleVisit" class="btn btn-warning">📅 Schedule a Visit</a>
-                    </div>
-                </div>
-            </main>
-        </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<body>
+	<jsp:include page="BuyerHeader.jsp"></jsp:include>
+	<jsp:include page="BuyerSidebar.jsp"></jsp:include>
+
+	<main id="main" class="main">
+		<div class="pagetitle">
+			<h1>Dashboard</h1>
+			<nav>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="buyerdashboard">Home</a></li>
+					<li class="breadcrumb-item active">Dashboard</li>
+				</ol>
+			</nav>
+		</div>
+
+		<!-- Dashboard Overview -->
+		<section class="section dashboard">
+			<div class="row">
+
+				<!-- Dashboard Cards -->
+				<div class="col-lg-4 col-md-6">
+					<div class="card info-card">
+						<div class="card-body">
+							<h5 class="card-title">Total Properties</h5>
+							<h3>${totalProperties}</h3>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-4 col-md-6">
+					<div class="card info-card">
+						<div class="card-body">
+							<h5 class="card-title">Saved Properties</h5>
+							<h3>${savedProperties}</h3>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-4 col-md-6">
+					<div class="card info-card">
+						<div class="card-body">
+							<h5 class="card-title">Scheduled Visits</h5>
+							<h3>${scheduledVisits}</h3>
+						</div>
+					</div>
+				</div>
+				<!-- End Dashboard Cards -->
+
+			</div>
+
+			<!-- Quick Links -->
+			<div class="row mt-4">
+				<div class="col-lg-6">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">Quick Links</h5>
+							<div class="list-group">
+								<a href="ListProperty" class="list-group-item list-group-item-action">🏠 View Properties</a>
+								<a href="savedProperties" class="list-group-item list-group-item-action">💾 Saved Properties</a>
+								<a href="scheduleVisit" class="list-group-item list-group-item-action">📅 Schedule a Visit</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- End Quick Links -->
+
+		</section>
+	</main>
+
+	<jsp:include page="BuyerFooter.jsp"></jsp:include>
+	<jsp:include page="BuyerJs.jsp"></jsp:include>
+
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script src="https://cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('.table').DataTable(); // Apply pagination & sorting to tables
+		});
+	</script>
+
 </body>
 </html>

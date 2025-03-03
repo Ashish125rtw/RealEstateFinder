@@ -68,7 +68,9 @@
     </div>
 
     <!-- About Us Section -->
-    <div class="container container-section text-center">
+    <div class="container container-section text-center" id="aboutus">
+    
+    <br>
         <h2>About Us</h2>
         <p>We are a leading real estate management platform, providing seamless property transactions, expert insights, and a user-friendly experience. Whether you’re buying, selling, or renting, we’re here to help you find the perfect home or investment opportunity.</p>
     </div>
@@ -116,7 +118,8 @@
     </div>
 
     <!-- Contact Form -->
-    <div class="container container-section text-center">
+    <div class="container container-section text-center" id="contact">
+    <br>
         <h2>Contact Us</h2>
         <div class="contact-form">
             <form action="contact" method="POST">

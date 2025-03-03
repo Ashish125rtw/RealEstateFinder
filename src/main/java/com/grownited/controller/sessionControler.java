@@ -154,11 +154,13 @@ public class sessionControler {
     }
     
     //Delete User
+    
     @GetMapping("/deleteUser/{id}")
     public String deleteUser(@PathVariable("id") Integer id) {
     	repositoryUser.deleteById(id);
     	return "redirect:/ListUser";
     }
+    
     
     
     // Edit 
@@ -190,5 +192,8 @@ public class sessionControler {
     
 
 }
+
+
+
 
 
