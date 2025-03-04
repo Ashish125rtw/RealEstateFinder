@@ -1,51 +1,46 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Change Password</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            text-align: center;
-            padding: 50px;
-        }
-        .container {
-            width: 300px;
-            margin: auto;
-            padding: 50px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px 0px #0000001a;
-        }
-        input, button {
-            width: 90%;
-            padding: 10px;
-            margin: 10px 0;
-        }
-        button {
-            background: blue;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background: darkblue;
-        }
-    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
+    <div class="container mt-5">
+        <div class="col-md-6 offset-md-3">
+            <h2 class="text-center mb-4">Change Password</h2>
+            
+            <!-- Display error message -->
+            <c:if test="${not empty error}">
+                <div class="alert alert-danger">${error}</div>
+            </c:if>
 
-    <div class="container">
-        <h2>Change Password</h2>
-        <form action="updatepassword" method="get">
-            <input type="hidden" name="email" value="${param.email}"> <!-- Capture user email -->
-            <input type="password" name="newpassword" placeholder="Enter New Password" required><br>
-            <input type="password" name="confirmpassword" placeholder="Confirm New Password" required><br>
-            <button type="submit">Update Password</button>
-        </form>
+            <!-- Display success message -->
+            <c:if test="${not empty msg}">
+                <div class="alert alert-success">${msg}</div>
+            </c:if>
+
+            <form action="${pageContext.request.contextPath}/updatepassword" method="post">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="otp">OTP:</label>
+                    <input type="text" class="form-control" id="otp" name="otp" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">New Password:</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Update Password</button>
+            </form>
+        </div>
     </div>
-
 </body>
 </html>

@@ -33,4 +33,24 @@ public class MailService {
 
         mailSender.send(message);
     }
+    
+    public void sendOtpForForgotPassword(String email, String firstName, String otp) {
+        String subject = "Password Reset Request - Real Estate Finder";
+        String body = "Dear " + firstName + ",\n\n"
+                + "We received a request to reset your password for your Real Estate Finder account.\n\n"
+                + "🔒 Your OTP (One-Time Password) is: " + otp + "\n\n"
+                + "Please enter this OTP in the password reset page to proceed. This OTP is valid for a limited time.\n\n"
+                + "If you did not request a password reset, please ignore this email or contact our support team.\n\n"
+                + "Best Regards,\n"
+                + "Real Estate Finder Team";
+
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom(senderEmail);
+        message.setTo(email);
+        message.setSubject(subject);
+        message.setText(body);
+
+        mailSender.send(message);
+    }
+
 }

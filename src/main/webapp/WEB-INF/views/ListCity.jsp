@@ -15,15 +15,15 @@
             <table class="table table-bordered table-striped">
                 <thead class="table-dark">
                     <tr>
-                        <th>City ID</th>
                         <th>City Name</th>
+                        <th>State Name</th>
                     </tr>
                 </thead>
                 <tbody>
                     <c:forEach items="${cityList}" var="m">
                         <tr>
-                            <td>${m.cityId}</td>
                             <td>${m.cityName}</td>
+                            <td>${m.stateName}</td>
                         </tr>
                     </c:forEach>
                 </tbody>

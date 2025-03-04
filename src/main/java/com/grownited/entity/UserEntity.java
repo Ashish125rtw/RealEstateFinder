@@ -25,6 +25,15 @@ public class UserEntity {
 	private String contactNum;
 	private String gender;
 	private String role;
+	public String getOtp() {
+		return otp;
+	}
+
+	public void setOtp(String otp) {
+		this.otp = otp;
+	}
+
+	private String otp; 
 	
 	 @Temporal(TemporalType.TIMESTAMP)
 	    private Date createdAt = new Date(); // Default value

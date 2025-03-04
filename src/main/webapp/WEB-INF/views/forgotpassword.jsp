@@ -46,10 +46,14 @@
     <div class="forgot-container">
         <h2>Forgot Password</h2>
         <p>Enter your registered email to reset your password.</p>
-        <form action="changpassword" method="get">
+        <form action="sendOtp" method="post">
             <input type="email" name="email" placeholder="Enter your email" required>
             <button type="submit">Reset Password</button>
         </form>
+        <br>
+        
+        ${error}
+        <br>
         <br>
         <a href="login">Back to Login</a>
     </div>
