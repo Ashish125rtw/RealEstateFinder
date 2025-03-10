@@ -1,139 +1,127 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Seller Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        /* Navbar */
-        .navbar-custom {
-        color: #1976d2 !important;
-           background: linear-gradient(90deg, #e3f2fd, #ffffff);
-            border-bottom: 2px solid #90caf9;
-        }
-        .nav-link {
-            color: #0d47a1 !important;
-            font-weight: 500;
-            transition: 0.3s ease-in-out;
-        }
-        .nav-link:hover {
-            color: #ff8f00 !important;
-            transform: scale(1.05);
-        }
-        .btn-custom {
-            background-color: #ffa000;
-            color: white;
-            font-weight: 500;
-            transition: 0.3s ease-in-out;
-        }
-        .btn-custom:hover {
-            background-color: #ffb300;
-            transform: scale(1.1);
-        }
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Seller | Dashboard</title>
 
-        /* Sidebar */
-        .sidebar {
-            height: 100vh;
-            background: #f1f8fe;
-            border-right: 2px solid #90caf9;
-            padding-top: 20px;
-        }
-        .sidebar a {
-color: #0d47a1;
-            font-weight: 500;
-            text-decoration: none;
-            padding: 12px;
-            display: block;        }
-        .sidebar a:hover {
-			 background: #bbdefb;
-            border-radius: 5px;
-        }
-
-        /* Content */
-        .content {
-            padding: 20px;
-        }
-        .card-custom {
-            border-left: 5px solid #ffa000;
-            background: #ffffff;
-            padding: 20px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-    </style>
+<jsp:include page="SellerCss.jsp"></jsp:include>
+<link href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.min.css" rel="stylesheet"/>
 </head>
-<body class="bg-light">
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light navbar-custom shadow-sm">
-        <div class="container">
-            <a class="navbar-brand fw-bold text-warning" href="sellerDashboard">🏡 Real Estate System</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="sellerProfile">⚙️ Profile</a></li>
-                    <li class="nav-item"><a class="nav-link btn btn-custom px-3 ms-2" href="logout">🚪 Logout</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<body>
+	<jsp:include page="SellerHeader.jsp"></jsp:include>
+	<jsp:include page="SellerSidebar.jsp"></jsp:include>
 
-    <div class="container-fluid">
-        <div class="row">
-            <!-- Sidebar -->
-            <nav class="col-md-3 sidebar">
-                <h4 class="text-center text-warning">Seller Panel</h4>
-                <a href="listProperty">📌 List Property</a>
-                <a href="myProperties">🏠 My Properties</a>
-                <a href="viewOffers">💰 View Offers</a>
-                <a href="manageBookings">📅 Manage Bookings</a>
-                <a href="messages">📩 Messages</a>
-                <a href="sellerAnalytics">📊 Property Analytics</a>
-                <a href="sellerProfile">⚙️ Profile & Settings</a>
-            </nav>
+	<main id="main" class="main">
+		<div class="pagetitle">
+			<h1>Dashboard</h1>
+			<nav>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="sellerdashboard">Home</a></li>
+					<li class="breadcrumb-item active">Dashboard</li>
+				</ol>
+			</nav>
+		</div>
 
-            <!-- Main Content -->
-            <main class="col-md-9 content">
-                <div class="card card-custom">
-                    <h2 class="text-center">Welcome, ${user.firstName}</h2>
-                    <p class="text-center text-muted">Manage your properties efficiently.</p>
+		<!-- Dashboard Overview -->
+		<section class="section dashboard">
+			<div class="row">
 
-                    <!-- Quick Stats -->
-                    <div class="row text-center mt-4">
-                        <div class="col-md-4">
-                            <div class="card card-custom">
-                                <h5>Listed Properties</h5>
-                                <p>10 Active Listings</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card card-custom">
-                                <h5>Pending Offers</h5>
-                                <p>5 Active Offers</p>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card card-custom">
-                                <h5>Successful Sales</h5>
-                                <p>3 Properties Sold</p>
-                            </div>
-                        </div>
-                    </div>
+				<!-- Dashboard Cards -->
+				<div class="col-lg-4 col-md-6">
+					<div class="card info-card">
+						<div class="card-body">
+							<h5 class="card-title">Total Properties</h5>
+							<h3>${totalProperties}</h3>
+						</div>
+					</div>
+				</div>
 
-                    <!-- Quick Actions -->
-                    <div class="d-flex justify-content-center gap-3 mt-4">
-                        <a href="listProperty" class="btn btn-outline-warning">List a Property</a>
-                        <a href="viewOffers" class="btn btn-outline-success">View Offers</a>
-                        <a href="sellerAnalytics" class="btn btn-outline-primary">View Analytics</a>
-                    </div>
-                </div>
-            </main>
-        </div>
-    </div>
+				<div class="col-lg-4 col-md-6">
+					<div class="card info-card">
+						<div class="card-body">
+							<h5 class="card-title">Pending Inquiries</h5>
+							<h3>${pendingInquiries}</h3>
+						</div>
+					</div>
+				</div>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+				<div class="col-lg-4 col-md-6">
+					<div class="card info-card">
+						<div class="card-body">
+							<h5 class="card-title">Total Sales</h5>
+							<h3>${totalSales}</h3>
+						</div>
+					</div>
+				</div>
+				<!-- End Dashboard Cards -->
+
+			</div>
+
+			<!-- Recent Inquiries -->
+			<div class="row mt-4">
+				<div class="col-lg-6">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">Recent Inquiries</h5>
+							<table class="table table-bordered table-striped">
+								<thead class="table-dark">
+									<tr>
+										<th>ID</th>
+										<th>Buyer</th>
+										<th>Message</th>
+										<th>Date</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${recentInquiries}" var="inquiry">
+										<tr>
+											<td>${inquiry.id}</td>
+											<td>${inquiry.buyerName}</td>
+											<td>${inquiry.message}</td>
+											<td>${inquiry.date}</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+				<!-- Quick Links -->
+				<div class="col-lg-6">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title">Quick Links</h5>
+							<div class="list-group">
+								<a href="addProperty.jsp" class="list-group-item list-group-item-action">🏠 Add New Property</a>
+								<a href="listProperties.jsp" class="list-group-item list-group-item-action">📋 Manage My Properties</a>
+								<a href="inquiries.jsp" class="list-group-item list-group-item-action">📩 View Buyer Inquiries</a>
+								<a href="sales.jsp" class="list-group-item list-group-item-action">💰 View Sales Reports</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- End Quick Links -->
+
+			</div>
+
+		</section>
+	</main>
+
+	<jsp:include page="SellerFooter.jsp"></jsp:include>
+	<jsp:include page="SellerJs.jsp"></jsp:include>
+
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script src="https://cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('.table').DataTable(); // Apply pagination & sorting to tables
+		});
+	</script>
+
 </body>
 </html>

@@ -12,6 +12,9 @@ public class PropertyEntity {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long propertyId;
+    
+    private Long sellerId; // New field to store seller ID
+
 	private String title;
 	private String propertyName;
 	private String address;
@@ -26,12 +29,21 @@ public class PropertyEntity {
 	private String status;
 	private Boolean active;
 
-    public Long getPropertyId() {
+    // Getters and Setters
+	public Long getPropertyId() {
 		return propertyId;
 	}
 	public void setPropertyId(Long propertyId) {
 		this.propertyId = propertyId;
 	}
+
+    public Long getSellerId() {
+		return sellerId;
+	}
+	public void setSellerId(Long sellerId) {
+		this.sellerId = sellerId;
+	}
+
 	public String getTitle() {
 		return title;
 	}
@@ -110,6 +122,4 @@ public class PropertyEntity {
 	public void setActive(Boolean active) {
 		this.active = active;
 	}
-	
-	
 }

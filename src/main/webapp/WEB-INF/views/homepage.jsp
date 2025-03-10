@@ -69,33 +69,9 @@
 
     <!-- About Us Section -->
     <div class="container container-section text-center" id="aboutus">
-    
-    <br>
+        <br>
         <h2>About Us</h2>
         <p>We are a leading real estate management platform, providing seamless property transactions, expert insights, and a user-friendly experience. Whether you’re buying, selling, or renting, we’re here to help you find the perfect home or investment opportunity.</p>
-    </div>
-
-    <!-- Our Services -->
-    <div class="container container-section text-center">
-        <h2>Our Services</h2>
-        <ul class="list-group list-group-flush text-start mx-auto" style="max-width: 700px;">
-            <li class="list-group-item">🏡 <strong>Buy & Sell Properties</strong> – List, market, and sell your property with ease.</li>
-            <li class="list-group-item">🏠 <strong>Rent & Lease</strong> – Find perfect rental homes and lease commercial spaces.</li>
-            <li class="list-group-item">📈 <strong>Market Analysis</strong> – Get data-driven property valuation and investment insights.</li>
-            <li class="list-group-item">🛠️ <strong>Property Management</strong> – Maintenance, tenant management, and legal assistance.</li>
-            <li class="list-group-item">🔍 <strong>Legal & Financial Consultation</strong> – Get expert legal and mortgage advisory.</li>
-        </ul>
-    </div>
-
-    <!-- Why Choose Us -->
-    <div class="container container-section text-center">
-        <h2>Why Choose Us?</h2>
-        <p>We provide unparalleled real estate services with:</p>
-        <ul class="list-group list-group-flush text-start mx-auto" style="max-width: 700px;">
-            <li class="list-group-item">✔️ A vast property network with verified listings.</li>
-            <li class="list-group-item">✔️ Transparent pricing and real-time market trends.</li>
-            <li class="list-group-item">✔️ 24/7 customer support and expert consultations.</li>
-        </ul>
     </div>
 
     <!-- FAQs -->
@@ -119,10 +95,13 @@
 
     <!-- Contact Form -->
     <div class="container container-section text-center" id="contact">
-    <br>
+        <br>
         <h2>Contact Us</h2>
+        <div id="alert-message" class="alert alert-success d-none" role="alert">
+            Your message has been sent successfully!
+        </div>
         <div class="contact-form">
-            <form action="contact" method="POST">
+            <form id="contactForm">
                 <div class="mb-3">
                     <label for="name" class="form-label">Your Name</label>
                     <input type="text" class="form-control" id="name" name="name" required>
@@ -139,6 +118,30 @@
             </form>
         </div>
     </div>
+
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            let formData = new FormData(this);
+
+            fetch("contact", {
+                method: "POST",
+                body: formData,
+            })
+            .then(response => response.text()) 
+            .then(data => {
+                document.getElementById("alert-message").classList.remove("d-none");
+                setTimeout(() => {
+                    document.getElementById("alert-message").classList.add("d-none");
+                }, 3000);
+
+                // Clear form fields
+                document.getElementById("contactForm").reset();
+            })
+            .catch(error => console.error("Error:", error));
+        });
+    </script>
 
     <%@ include file="footer.jsp" %>
 

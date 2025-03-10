@@ -24,7 +24,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="searchProperties">
+            <a class="nav-link collapsed" href="ListProperty">
                 <i class="bi bi-search"></i> <span>Search Properties</span>
             </a>
         </li>
@@ -36,26 +36,15 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="contactAgent">
+            <a class="nav-link collapsed" href="ListAgent">
                 <i class="bi bi-person-lines-fill"></i> <span>Contact an Agent</span>
             </a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="mortgageCalculator">
-                <i class="bi bi-cash-stack"></i> <span>Mortgage Calculator</span>
-            </a>
-        </li>
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="purchaseHistory">
                 <i class="bi bi-receipt-cutoff"></i> <span>Purchase History</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="profileSettings">
-                <i class="bi bi-gear-fill"></i> <span>Profile Settings</span>
             </a>
         </li>
     </ul>

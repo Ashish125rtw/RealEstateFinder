@@ -1,38 +1,50 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Property List</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Property Listings</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- DataTables CSS -->
     <link href="https://cdn.jsdelivr.net/npm/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #f4f6f9;
         }
-        .container {
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            margin-top: 30px;
-        }
+        
         h2 {
             font-weight: bold;
-            color: #343a40;
+            color: #0d47a1;
+            text-align: center;
+            margin-bottom: 20px;
         }
-        table {
-            margin-top: 20px;
+        .table thead {
+            background-color: #0d47a1;
+            color: white;
+        }
+        .table-hover tbody tr:hover {
+            background-color: #e3f2fd;
         }
     </style>
 </head>
 <body>
+
+    <!-- Include Navbar -->
+    <jsp:include page="navbar.jsp"></jsp:include>
+
     <div class="container">
-        <h2 class="text-center mb-4">Property List</h2>
+        <h2>Available Properties</h2>
+
         <div class="table-responsive">
             <table id="propertyTable" class="table table-bordered table-striped table-hover">
-                <thead class="table-dark">
+                <thead>
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
@@ -48,6 +60,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <!-- Loop through propertyList -->
                     <c:forEach items="${propertyList}" var="property">
                         <tr>
                             <td>${property.propertyId}</td>
@@ -67,19 +80,26 @@
             </table>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- jQuery and DataTables -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+
     <script>
         $(document).ready(function() {
             $('#propertyTable').DataTable({
                 "paging": true,
                 "lengthMenu": [5, 10, 25, 50],
-                "pageLength": 5,
-                "ordering": true
+                "pageLength": 10,
+                "ordering": true,
+                "searching": true
             });
         });
     </script>
+
 </body>
 </html>

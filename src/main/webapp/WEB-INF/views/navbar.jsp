@@ -52,7 +52,7 @@ body {
                 <li class="nav-item"><a class="nav-link" href="#aboutus">About Us</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 <li class="nav-item"><a class="nav-link" href="/ListProperty">Properties</a></li>
-                <li class="nav-item"><a class="nav-link" href="ListAgent">Agents</a></li>
+                
 
                 <%-- Show Logout if User is Logged In, Otherwise Show Login/Signup --%>
                 
