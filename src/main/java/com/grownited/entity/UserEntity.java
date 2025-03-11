@@ -25,6 +25,16 @@ public class UserEntity {
 	private String contactNum;
 	private String gender;
 	private String role;
+	private String profilePicPath;
+	
+	public String getProfilePicPath() {
+		return profilePicPath;
+	}
+
+	public void setProfilePicPath(String profilePicPath) {
+		this.profilePicPath = profilePicPath;
+	}
+
 	public String getOtp() {
 		return otp;
 	}

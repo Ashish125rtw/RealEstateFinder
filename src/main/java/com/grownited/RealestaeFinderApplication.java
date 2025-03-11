@@ -2,11 +2,15 @@ package com.grownited;
 
 import java.net.PasswordAuthentication;
 
+import org.hibernate.mapping.Map;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 
 
 @SpringBootApplication
@@ -21,4 +25,10 @@ public class RealestaeFinderApplication {
 		return new BCryptPasswordEncoder(5);
 	}
 
+	@Bean
+ 	Cloudinary cloudinary() {
+ 		java.util.Map<String, String> config = ObjectUtils.asMap("cloud_name", "ds931wzp8", "api_key", "559844976226782",
+ 				"api_secret", "9XYlWxWW_-AKwwMvz14GLx-o7Sc");
+ 		return new Cloudinary(config);
+ 	}
 }

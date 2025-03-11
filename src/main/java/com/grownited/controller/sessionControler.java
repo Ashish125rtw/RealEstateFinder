@@ -1,19 +1,24 @@
 package com.grownited.controller;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
+import com.cloudinary.Cloudinary;
 import com.grownited.entity.UserEntity;
 import com.grownited.repository.UserRepository;
 import com.grownited.service.MailService;
 
-import jakarta.servlet.http.HttpSession;
+import jakarta.mail.Multipart;
+import jakarta.servlet.http.HttpSession; 
+import org.springframework.web.multipart.MultipartFile;
+import com.cloudinary.utils.ObjectUtils;
 
 @Controller
 public class sessionControler {
@@ -26,6 +31,9 @@ public class sessionControler {
 	
 	@Autowired
 	private PasswordEncoder encoder;
+	
+	 @Autowired
+	private Cloudinary cloudinary;
 
 	// Homepage
 	@GetMapping({"homepage"})
@@ -46,19 +54,47 @@ public class sessionControler {
 	}
 
 	// Save User (Signup Process)
-	@PostMapping("saveuser")
-	public String saveUser(UserEntity userEntity) {
-		// Encrypt password before saving
-		String encPassword = encoder.encode(userEntity.getPassword());
-		userEntity.setPassword(encPassword);
+	 @PostMapping("saveuser")
+	public String saveUser(UserEntity userEntity, @RequestParam("profilePic") MultipartFile profilePic) {
 
-		// Save user and send welcome mail
-		repositoryUser.save(userEntity);
-		serviceMail.sendWelcomeMail(userEntity.getEmail(), userEntity.getFirstName());
+		    if (profilePic == null || profilePic.isEmpty()) {
+		        return "signup"; // Return to signup if no file is provided
+		    }
 
-		return "redirect:/login";
+		    System.out.println("Uploaded File Name: " + profilePic.getOriginalFilename());
+
+		    // Check for valid file extensions
+		    String fileName = profilePic.getOriginalFilename();
+		    if (!(fileName.endsWith(".jpg") || fileName.endsWith(".jpeg") || fileName.endsWith(".png"))) {
+		        return "signup"; // Return if file format is invalid
+		    }
+
+		    try {
+		        // Upload to Cloudinary
+		        Map<String, Object> result = cloudinary.uploader().upload(profilePic.getBytes(), ObjectUtils.emptyMap());
+		        System.out.println("Upload Response: " + result);
+		        System.out.println("Profile Pic URL: " + result.get("url"));
+
+		        // Save profile picture URL
+		        userEntity.setProfilePicPath(result.get("url").toString());
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		        return "signup"; // Return in case of upload failure
+		    }
+
+		    // Encrypt password before saving
+		    String encPassword = encoder.encode(userEntity.getPassword());
+		    userEntity.setPassword(encPassword);
+
+		    // Save user and send welcome mail
+		    repositoryUser.save(userEntity);
+		    serviceMail.sendWelcomeMail(userEntity.getEmail(), userEntity.getFirstName());
+
+		    return "redirect:/login";
+		
+
 	}
-    
+
 	// List Users
 	@GetMapping("ListUser")
 	public String listUsers(Model model) {
@@ -213,3 +249,4 @@ public class sessionControler {
 		return "privacy";
 	}
 }
+

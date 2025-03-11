@@ -58,7 +58,7 @@
                     <!-- Loop through agentList -->
                     <c:forEach items="${agentList}" var="agent">
                         <tr>
-                            <td>${agent.userId}</td>
+                            <td>${agent.agentId}</td>
                             <td>${agent.licenseNo}</td>
                             <td>${agent.agencyName}</td>
                             <td>${agent.experienceYears}</td>
