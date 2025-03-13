@@ -6,51 +6,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>User Details</title>
+    
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #f4f6f9;
         }
-        .container {
-            margin-top: 40px;
-        }
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .card {
-            max-width: 500px;
-            margin: auto;
-            padding: 20px;
-            border-radius: 10px;
+        
+        
+        .profile-pic {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
         }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <h2 class="text-primary">User Details</h2>
     
-    <div class="card shadow-lg">
-        <div class="card-body">
-            <p><strong>ID:</strong> ${user.userId}</p>
-            <p><strong>First Name:</strong> ${user.firstName}</p>
-            <p><strong>Last Name:</strong> ${user.lastName}</p>
-            <p><strong>Email:</strong> ${user.email}</p>
-            <p><strong>Contact:</strong> ${user.contactNum}</p>
-            <p><strong>Gender:</strong> ${user.gender}</p>
-            <p><strong>Role:</strong> ${user.role}</p>
+    <!-- Navbar -->
+    <jsp:include page="navbar.jsp"></jsp:include>
+    
+    <div class="container">
+        <h2 class="text-center text-primary">User Details</h2>
+        
+        <div class="card shadow-lg">
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <tr>
+                        <td rowspan="7" class="text-center align-middle">
+                            <img src="${user.profilePicPath}" alt="Profile" class="profile-pic">
+                        </td>
+                        <td><strong><i class="fas fa-id-badge"></i> ID:</strong></td>
+                        <td>${user.userId}</td>
+                    </tr>
+                    <tr>
+                        <td><strong><i class="fas fa-user"></i> First Name:</strong></td>
+                        <td>${user.firstName}</td>
+                    </tr>
+                    <tr>
+                        <td><strong><i class="fas fa-user"></i> Last Name:</strong></td>
+                        <td>${user.lastName}</td>
+                    </tr>
+                    <tr>
+                        <td><strong><i class="fas fa-envelope"></i> Email:</strong></td>
+                        <td>${user.email}</td>
+                    </tr>
+                    <tr>
+                        <td><strong><i class="fas fa-phone"></i> Contact:</strong></td>
+                        <td>${user.contactNum}</td>
+                    </tr>
+                    <tr>
+                        <td><strong><i class="fas fa-venus-mars"></i> Gender:</strong></td>
+                        <td>${user.gender}</td>
+                    </tr>
+                    <tr>
+                        <td><strong><i class="fas fa-user-shield"></i> Role:</strong></td>
+                        <td>${user.role}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div class="text-center mt-3">
+            <a href="${pageContext.request.contextPath}/ListUser" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Back to List</a>
         </div>
     </div>
-    
-    <div class="text-center mt-3">
-        <a href="${pageContext.request.contextPath}/ListUser" class="btn btn-secondary">Back to List</a>
-    </div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

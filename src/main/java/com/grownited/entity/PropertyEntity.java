@@ -5,11 +5,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
 @Entity
 @Table(name = "property_detailes")
 public class PropertyEntity {
-	@Id
+	@Id 
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long propertyId;
     
@@ -28,8 +28,17 @@ public class PropertyEntity {
 	private Integer yearBuilt;
 	private String status;
 	private Boolean active;
+	private String imageUrls; 
+	
+	
 
-    // Getters and Setters
+    public String getImageUrls() {
+		return imageUrls;
+	}
+	public void setImageUrls(String imageUrls) {
+		this.imageUrls = imageUrls;
+	}
+	// Getters and Setters
 	public Long getPropertyId() {
 		return propertyId;
 	}
