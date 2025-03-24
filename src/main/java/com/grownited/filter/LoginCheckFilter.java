@@ -18,52 +18,41 @@ import jakarta.servlet.http.HttpSession;
 
 @Component
 public class LoginCheckFilter implements Filter {
-	
-	ArrayList<String> publicURL = new ArrayList<>();
-	
-	public LoginCheckFilter() {
-		publicURL.add("/login");
-		publicURL.add("/homepage");
-		publicURL.add("/signup");
-		publicURL.add("/saveuser");
-		publicURL.add("/forgotpassword");
-		publicURL.add("/sendOtp");
-		publicURL.add("/changpassword");
-		publicURL.add("/updatepassword");
-		publicURL.add("/authenticate");
-		publicURL.add("/privacy");
-		
-		
-	}
-	public void doFilter(ServletRequest request , ServletResponse response, FilterChain chain) throws IOException , ServletException {
-		
-		
-		HttpServletRequest req = (HttpServletRequest) request;
-		
-		String	url = req.getRequestURL().toString();
-		String  uri = req.getRequestURI();
-		
-//		System.out.println("Filter call"+uri);
-		
-		if (publicURL.contains(uri) || uri.contains(".css") || uri.contains(".js") || uri.contains("assests") ) {
-			
-			chain.doFilter(request, response);
-			
-		}
-		else {
-			HttpSession session = req.getSession();
- 			UserEntity user = (UserEntity) session.getAttribute("user");
- 
- 			if (user == null) {
- 					req.getRequestDispatcher("login").forward(request, response);			
- 			}else {
- 				chain.doFilter(request, response);//go ahead 
- 			}
-		}
-			
-		
-		
-	}
-		
-	
+    
+    ArrayList<String> publicURL = new ArrayList<>();
+    
+    public LoginCheckFilter() {
+        publicURL.add("/login");
+        publicURL.add("/homepage");
+        publicURL.add("/signup");
+        publicURL.add("/saveuser");
+        publicURL.add("/forgotpassword");
+        publicURL.add("/sendOtp");
+        publicURL.add("/changpassword");
+        publicURL.add("/updatepassword");
+        publicURL.add("/authenticate");
+        publicURL.add("/privacy");
+        publicURL.add("/savecontact");  // ✅ Added this line to allow contact form submission
+    }
+
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) 
+            throws IOException, ServletException {
+        
+        HttpServletRequest req = (HttpServletRequest) request;
+        String uri = req.getRequestURI();
+        
+        // ✅ Allow public URLs and static resources
+        if (publicURL.contains(uri) || uri.contains(".css") || uri.contains(".js") || uri.contains("assets")) {
+            chain.doFilter(request, response);
+        } else {
+            HttpSession session = req.getSession();
+            UserEntity user = (UserEntity) session.getAttribute("user");
+
+            if (user == null) {
+                req.getRequestDispatcher("login").forward(request, response);
+            } else {
+                chain.doFilter(request, response); // ✅ Proceed if user is logged in
+            }
+        }
+    }
 }

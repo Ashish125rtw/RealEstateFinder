@@ -35,7 +35,7 @@
 						<div class="card-body">
 							<h5 class="card-title">Total Properties</h5>
 							<h3>${totalProperties}</h3>
-							<h2>13</h2>
+							
 						</div>
 					</div>
 				</div>
@@ -44,7 +44,7 @@
 					<div class="card info-card">
 						<div class="card-body">
 							<h5 class="card-title">Total Agents</h5>
-							<h3>20</h3>
+							
 							<h2>${totalAgents}</h2>
 						</div>
 					</div>
@@ -55,7 +55,7 @@
 						<div class="card-body">
 							<h5 class="card-title">Total Users</h5>
 							<h3>${totalUsers}</h3>
-							<h2>50</h2>
+							
 						</div>
 					</div>
 				</div>

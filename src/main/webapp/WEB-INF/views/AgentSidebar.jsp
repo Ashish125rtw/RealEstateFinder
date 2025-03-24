@@ -34,7 +34,7 @@
 		</a></li>
 
 		<li class="nav-item"><a class="nav-link collapsed"
-			href="ListInquiries"> <i class="bi-chat-dots-fill"></i> <span>Inquiries</span>
+			href="Listmessages"> <i class="bi-chat-dots-fill"></i> <span>Inquiries</span>
 		</a></li>
 
 		<li class="nav-item"><a class="nav-link collapsed"

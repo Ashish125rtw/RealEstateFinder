@@ -17,8 +17,8 @@
                 <i class="bi bi-building"></i> <span>My Properties</span> <i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="properties-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-                <li><a href="ListMyProperties"><i class="bi bi-circle"></i> <span>View My Listings</span></a></li>
-                <li><a href="Property"><i class="bi bi-circle"></i> <span>Add New Property</span></a></li>
+                <li><a href="ListProperty" target="_blank"><i class="bi bi-circle"></i> <span>View My Listings</span></a></li>
+                <li><a href="Property" target="_blank"><i class="bi bi-circle"></i> <span>Add New Property</span></a></li>
             </ul>
         </li>
 

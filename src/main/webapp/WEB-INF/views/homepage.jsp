@@ -5,6 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Real Estate Management System - Find Your Dream Home</title>
+    <!-- favicons img -->
+    <link href="static/assets/img/favicon.png" rel="icon">
+  	<link href="/assets/img/apple-t	ouch-icon.png" rel="apple-touch-icon">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
         body {
@@ -94,55 +98,47 @@
     </div>
 
     <!-- Contact Form -->
-    <div class="container container-section text-center" id="contact">
-        <br>
-        <h2>Contact Us</h2>
-        <div id="alert-message" class="alert alert-success d-none" role="alert">
-            Your message has been sent successfully!
-        </div>
-        <div class="contact-form">
-            <form id="contactForm">
-                <div class="mb-3">
-                    <label for="name" class="form-label">Your Name</label>
-                    <input type="text" class="form-control" id="name" name="name" required>
-                </div>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Your Email</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                </div>
-                <div class="mb-3">
-                    <label for="message" class="form-label">Message</label>
-                    <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary w-100">Send Message</button>
-            </form>
-        </div>
+   
+<div class="container text-center" id="contact">
+    <br>
+    <h2>Contact Us</h2>
+
+    <!-- Success Message -->
+    <div id="alert-message" class="alert alert-success d-none">
+        Your message has been sent successfully!
     </div>
 
-    <script>
-        document.getElementById("contactForm").addEventListener("submit", function (event) {
-            event.preventDefault(); // Prevent default form submission
+    <!-- Contact Form -->
+    <div class="contact-form">
+        <form id="contactForm" action="/savecontact" method="post">
+        
+            <div class="mb-3">
+                <label for="name" class="form-label">Your Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
 
-            let formData = new FormData(this);
+            <div class="mb-3">
+                <label for="email" class="form-label">Your Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
 
-            fetch("contact", {
-                method: "POST",
-                body: formData,
-            })
-            .then(response => response.text()) 
-            .then(data => {
-                document.getElementById("alert-message").classList.remove("d-none");
-                setTimeout(() => {
-                    document.getElementById("alert-message").classList.add("d-none");
-                }, 3000);
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="text" class="form-control" id="phone" name="phone" required>
+            </div>
 
-                // Clear form fields
-                document.getElementById("contactForm").reset();
-            })
-            .catch(error => console.error("Error:", error));
-        });
-    </script>
+            <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+            </div>
 
+            <button type="submit" class="btn btn-primary w-100">Send Message</button>
+        </form>
+    </div>
+</div>
+
+   
+    
     <%@ include file="footer.jsp" %>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

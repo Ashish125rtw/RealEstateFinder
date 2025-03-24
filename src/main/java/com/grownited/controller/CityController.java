@@ -18,7 +18,7 @@ public class CityController {
     private CityRepository repoCity;
     
     @Autowired
-    private StateRepository repoState;  // ✅ Added to fetch states
+    private StateRepository repoState; 
 
     @GetMapping("NewCity")
     public String newCityForm(Model model) {

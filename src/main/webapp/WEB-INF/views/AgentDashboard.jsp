@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -8,120 +9,95 @@
 <title>Agent | Dashboard</title>
 
 <jsp:include page="AgentCss.jsp"></jsp:include>
-<link href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.min.css" rel="stylesheet"/>
+<link
+	href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.min.css"
+	rel="stylesheet" />
 </head>
 <body>
 	<jsp:include page="AgentHeader.jsp"></jsp:include>
 	<jsp:include page="AgentSidebar.jsp"></jsp:include>
 
-	<main id="main" class="main">
-		<div class="pagetitle">
-			<h1>Dashboard</h1>
-			<nav>
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="agentdashboard">Home</a></li>
-					<li class="breadcrumb-item active">Dashboard</li>
-				</ol>
-			</nav>
-		</div>
+	 <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>Dashboard</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="AgentDashboard">Home</a></li>
+                    <li class="breadcrumb-item active">Dashboard</li>
+                </ol>
+            </nav>
+        </div>
 
-		<!-- Dashboard Overview -->
-		<section class="section dashboard">
-			<div class="row">
+        <!-- Dashboard Overview -->
+        <section class="section dashboard">
+            <div class="row">
+                <!-- Total Properties -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="card info-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Properties</h5>
+                            <h3>${totalProperties}</h3>
+                        </div>
+                    </div>
+                </div>
 
-				<!-- Dashboard Cards -->
-				<div class="col-lg-4 col-md-6">
-					<div class="card info-card">
-						<div class="card-body">
-							<h5 class="card-title">Total Properties</h5>
-							<h3>${totalProperties}</h3>
-							<h2>13</h2>
-						</div>
-					</div>
-				</div>
+                <!-- Total Agents -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="card info-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Agents</h5>
+                            <h3>${totalAgents}</h3>
+                        </div>
+                    </div>
+                </div>
 
-				<div class="col-lg-4 col-md-6">
-					<div class="card info-card">
-						<div class="card-body">
-							<h5 class="card-title">Total Users</h5>
-							<h3>${totalUsers}</h3>
-							<h2>50</h2>
-						</div>
-					</div>
-				</div>
+                <!-- Total Users -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="card info-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Users</h5>
+                            <h3>${totalUsers}</h3>
+                        </div>
+                    </div>
+                </div>
 
-				<div class="col-lg-4 col-md-6">
-					<div class="card info-card">
-						<div class="card-body">
-							<h5 class="card-title">Pending Inquiries</h5>
-							<h3>${pendingInquiries}</h3>
-							<h2>0</h2>
-						</div>
-					</div>
-				</div>
+                <!-- Pending Inquiries -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="card info-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Pending Inquiries</h5>
+                            <h3>${pendingInquiries}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+	
 				<!-- End Dashboard Cards -->
 
-			</div>
+			
 
-			<!-- Recent Activities -->
-			<div class="row mt-4">
-				<div class="col-lg-6">
-					<div class="card">
-						<div class="card-body">
-							<h5 class="card-title">Recent User Inquiries</h5>
-							<table class="table table-bordered table-striped">
-								<thead class="table-dark">
-									<tr>
-										<th>ID</th>
-										<th>User</th>
-										<th>Message</th>
-										<th>Date</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${recentInquiries}" var="inquiry">
-										<tr>
-											<td>${inquiry.id}</td>
-											<td>${inquiry.userName}</td>
-											<td>${inquiry.message}</td>
-											<td>${inquiry.date}</td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-
-				<!-- Quick Links -->
-				<div class="col-lg-6">
-					<div class="card">
-						<div class="card-body">
-							<h5 class="card-title">Quick Links</h5>
-							<div class="list-group">
-								<a href="listProperties.jsp" class="list-group-item list-group-item-action">🏠 Manage My Properties</a>
-								<a href="addProperty.jsp" class="list-group-item list-group-item-action">➕ Add Property</a>
-								<a href="inquiries.jsp" class="list-group-item list-group-item-action">📩 View Inquiries</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- End Quick Links -->
-
-			</div>
-
-		</section>
-	</main>
-
+		
 	<jsp:include page="AgentFooter.jsp"></jsp:include>
 	<jsp:include page="AgentJs.jsp"></jsp:include>
 
+	<!-- jQuery and DataTables Scripts -->
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 	<script src="https://cdn.datatables.net/2.2.2/js/dataTables.min.js"></script>
-	<script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.min.js"></script>
+	<script
+		src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.min.js"></script>
+
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$('.table').DataTable(); // Apply pagination & sorting to tables
+			$('#inquiriesTable').DataTable({
+				"paging" : true, // Enable pagination
+				"searching" : true, // Enable search filter
+				"ordering" : true, // Enable column sorting
+				"pageLength" : 5, // Number of rows per page
+				"lengthMenu" : [ 5, 10, 20, 50 ]
+			// Dropdown for rows per page
+			});
 		});
 	</script>
 

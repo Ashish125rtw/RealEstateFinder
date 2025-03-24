@@ -5,6 +5,7 @@
 <head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
+<link href="assets/img/favicon.png" rel="icon">
 <title>Seller | Dashboard</title>
 
 <jsp:include page="SellerCss.jsp"></jsp:include>
@@ -90,21 +91,7 @@
 					</div>
 				</div>
 
-				<!-- Quick Links -->
-				<div class="col-lg-6">
-					<div class="card">
-						<div class="card-body">
-							<h5 class="card-title">Quick Links</h5>
-							<div class="list-group">
-								<a href="addProperty.jsp" class="list-group-item list-group-item-action">🏠 Add New Property</a>
-								<a href="listProperties.jsp" class="list-group-item list-group-item-action">📋 Manage My Properties</a>
-								<a href="inquiries.jsp" class="list-group-item list-group-item-action">📩 View Buyer Inquiries</a>
-								<a href="sales.jsp" class="list-group-item list-group-item-action">💰 View Sales Reports</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- End Quick Links -->
+				
 
 			</div>
 

@@ -46,31 +46,34 @@
 			<h5 class="card-title">
 							Users<span>/all</span>
 			</h5>
+	
+	<div class="contact-form">
+        <form id="contactForm" action="savecontact" method="post">
+        
+            <div class="mb-3">
+                <label for="name" class="form-label">Your Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
 
-			<table class="table table-bordered table-striped table-hover shadow-lg">
-										<thead class="table-dark">
-					<tr>
-						<th>User ID</th>
-						<th>License No</th>
-						<th>Agency Name</th>
-						<th>Experience (Years)</th>
-						<th>Rating</th>
-						<th>Address</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${agentList}" var="agent">
-						<tr>
-							<td>${agent.userId}</td>
-							<td>${agent.licenseNo}</td>
-							<td>${agent.agencyName}</td>
-							<td>${agent.experienceYears}</td>
-							<td>${agent.rating}</td>
-							<td>${agent.address}</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-									</table>
+            <div class="mb-3">
+                <label for="email" class="form-label">Your Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="text" class="form-control" id="phone" name="phone" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Send Message</button>
+        </form>
+    </div>
+</div>
 								</div>
 							</div>
 						</div>

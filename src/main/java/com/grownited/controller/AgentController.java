@@ -2,6 +2,7 @@ package com.grownited.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,15 +14,30 @@ import com.grownited.entity.AgentEntity;
 import com.grownited.entity.AreaEntity;
 import com.grownited.entity.UserEntity;
 import com.grownited.repository.AgentRepository;
+import com.grownited.repository.InquiryRepository;
+import com.grownited.repository.PropertyRepository;
+import com.grownited.repository.UserRepository;
 
 
 
 @Controller
 public class AgentController {
 	
-	@Autowired
+//	@Autowired
+//	
+//	private AgentRepository repoagent;
 	
-	AgentRepository repoagent;
+	@Autowired
+	private PropertyRepository propertyRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
+	
+	@Autowired
+	private InquiryRepository inquiryRepository;
+
+	@Autowired
+	private AgentRepository agentRepository;
 	
 	@GetMapping("/Agentdetails")
 	
@@ -44,7 +60,7 @@ public class AgentController {
 	@GetMapping("ListAgent")
     public String listagent(Model model) {
     	
-    	List<AgentEntity> agentList= repoagent.findAll();
+    	List<AgentEntity> agentList= agentRepository.findAll();
     	model.addAttribute("agentList", agentList);
     	
     	return "ListAgent";
@@ -52,8 +68,24 @@ public class AgentController {
 	
 
 	@GetMapping("AgentDashboard")
-	public String agentDashboard() {
-		
+		  public String AgentDashboard(Model model) {
+		        long totalProperties = propertyRepository.count();
+		        long totalAgents = agentRepository.count();
+		        long totalUsers = userRepository.count();
+		        
+//		        long pendingInquiries = inquiryRepository.countByStatus("Pending");
+
+		        System.out.println("Total Properties: " + totalProperties);
+		        System.out.println("Total Agents: " + totalAgents);
+		        System.out.println("Total Users: " + totalUsers);
+//		        System.out.println("Pending Inquiries: " + pendingInquiries);
+
+		        model.addAttribute("totalProperties", totalProperties);
+		        model.addAttribute("totalAgents", totalAgents);
+		        model.addAttribute("totalUsers", totalUsers);
+//		        model.addAttribute("pendingInquiries", pendingInquiries);
+		        
+		       		
 		return "AgentDashboard";
 	}
 //	@GetMapping("NewAgent")
@@ -64,12 +96,6 @@ public class AgentController {
 	
 	
 	
-	
-	
-	
-	
-	 @Autowired
-	    private AgentRepository agentRepository;
 
 	    // Show the Agent Registration Form
 	    @GetMapping("/NewAgent")
@@ -104,7 +130,29 @@ public class AgentController {
 	        }
 	        return "NewAgent"; // Stay on the same page
 	    }
-	
+	    
+
+	    @GetMapping("/AgentDashb")
+	    public String showDashboard(Model model) {
+	        long totalProperties = propertyRepository.count();
+	        long totalAgents = agentRepository.count();
+	        long totalUsers = userRepository.count();
+	        
+//	        long pendingInquiries = inquiryRepository.countByStatus("Pending");
+
+	        System.out.println("Total Properties: " + totalProperties);
+	        System.out.println("Total Agents: " + totalAgents);
+	        System.out.println("Total Users: " + totalUsers);
+//	        System.out.println("Pending Inquiries: " + pendingInquiries);
+
+	        model.addAttribute("totalProperties", totalProperties);
+	        model.addAttribute("totalAgents", totalAgents);
+	        model.addAttribute("totalUsers", totalUsers);
+//	        model.addAttribute("pendingInquiries", pendingInquiries);
+	        
+	        return "AgentDashboard";
+	    }
+	}
 	
 
-}
+

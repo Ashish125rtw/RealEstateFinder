@@ -112,5 +112,9 @@
 			</plugin>
 		</plugins>
 	</build>
+	<session-config>
+    <session-timeout>15</session-timeout>  <!-- 15 minutes -->
+</session-config>
+
 
 </project>
