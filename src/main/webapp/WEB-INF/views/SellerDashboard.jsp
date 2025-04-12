@@ -34,7 +34,8 @@
 				<div class="col-lg-4 col-md-6">
 					<div class="card info-card">
 						<div class="card-body">
-							<h5 class="card-title">Total Properties</h5>
+							<h5 class="card-title">Total Your Properties</h5>
+							<h3>1</h3>
 							<h3>${totalProperties}</h3>
 						</div>
 					</div>
@@ -44,6 +45,7 @@
 					<div class="card info-card">
 						<div class="card-body">
 							<h5 class="card-title">Pending Inquiries</h5>
+							<h3>0</h3>
 							<h3>${pendingInquiries}</h3>
 						</div>
 					</div>
@@ -53,6 +55,7 @@
 					<div class="card info-card">
 						<div class="card-body">
 							<h5 class="card-title">Total Sales</h5>
+							<h3>0</h3>
 							<h3>${totalSales}</h3>
 						</div>
 					</div>

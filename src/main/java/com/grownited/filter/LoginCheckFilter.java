@@ -1,7 +1,8 @@
 package com.grownited.filter;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
@@ -12,47 +13,69 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 @Component
 public class LoginCheckFilter implements Filter {
-    
-    ArrayList<String> publicURL = new ArrayList<>();
-    
-    public LoginCheckFilter() {
-        publicURL.add("/login");
-        publicURL.add("/homepage");
-        publicURL.add("/signup");
-        publicURL.add("/saveuser");
-        publicURL.add("/forgotpassword");
-        publicURL.add("/sendOtp");
-        publicURL.add("/changpassword");
-        publicURL.add("/updatepassword");
-        publicURL.add("/authenticate");
-        publicURL.add("/privacy");
-        publicURL.add("/savecontact");  // ✅ Added this line to allow contact form submission
-    }
 
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) 
-            throws IOException, ServletException {
-        
+    private static final List<String> publicURLs = Arrays.asList(
+        "/login", "/signup", "/authenticate", "/homepage", "/forgotpassword", "/sendOtp",
+        "/changpassword", "/updatepassword", "/privacy", "/savecontact", "/SIGNUPNICE", "/contact"
+    );
+
+    private static final List<String> publicExtensions = Arrays.asList(
+        ".css", ".js", ".png", ".jpg", ".jpeg", ".gif", ".svg", ".woff", ".ttf", ".ico"
+    );
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+        throws IOException, ServletException {
+
         HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletResponse res = (HttpServletResponse) response;
         String uri = req.getRequestURI();
-        
-        // ✅ Allow public URLs and static resources
-        if (publicURL.contains(uri) || uri.contains(".css") || uri.contains(".js") || uri.contains("assets")) {
-            chain.doFilter(request, response);
-        } else {
-            HttpSession session = req.getSession();
-            UserEntity user = (UserEntity) session.getAttribute("user");
+        HttpSession session = req.getSession(false);
+        UserEntity user = (session != null) ? (UserEntity) session.getAttribute("user") : null;
 
-            if (user == null) {
-                req.getRequestDispatcher("login").forward(request, response);
-            } else {
-                chain.doFilter(request, response); // ✅ Proceed if user is logged in
-            }
+        boolean isPublic = publicURLs.stream().anyMatch(uri::contains);
+        boolean isStatic = publicExtensions.stream().anyMatch(uri::endsWith) || uri.contains("/assets/");
+
+        if (isPublic || isStatic) {
+            chain.doFilter(request, response);
+            return;
         }
+
+        if (user == null) {
+            res.sendRedirect(req.getContextPath() + "/login");
+            return;
+        }
+
+        // Role-based access
+        String role = user.getRole();
+
+        if ((uri.contains("/AdminDashboard") || uri.contains("/admin")) && !role.equals("Admin")) {
+            res.sendRedirect(req.getContextPath() + "/access-denied");
+            return;
+        }
+
+        if ((uri.contains("/AgentDashboard") || uri.contains("/agent")) && !role.equals("Agent")) {
+            res.sendRedirect(req.getContextPath() + "/access-denied");
+            return;
+        }
+
+        if ((uri.contains("/BuyerDashboard") || uri.contains("/buyer")) && !role.equals("Buyer")) {
+            res.sendRedirect(req.getContextPath() + "/access-denied");
+            return;
+        }
+
+        if ((uri.contains("/SellerDashboard") || uri.contains("/seller")) && !role.equals("Seller")) {
+            res.sendRedirect(req.getContextPath() + "/access-denied");
+            return;
+        }
+
+        // If everything is good
+        chain.doFilter(request, response);
     }
 }

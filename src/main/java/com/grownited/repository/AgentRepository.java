@@ -1,6 +1,7 @@
 package com.grownited.repository;
 
 import com.grownited.dto.CityDto;
+
 import com.grownited.entity.AgentEntity;
 
 import java.util.List;
@@ -19,5 +20,7 @@ public interface AgentRepository extends JpaRepository<AgentEntity, Integer> {
 
 	@Query(value = "SELECT COUNT(*) FROM users", nativeQuery = true)
 	long getTotalUsers();
+	@Query(value = "SELECT COUNT(*) FROM buyer_inquiry", nativeQuery = true)
+    long getInquiryCount();
 
 }

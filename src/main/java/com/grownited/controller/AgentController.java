@@ -3,6 +3,7 @@ package com.grownited.controller;
 import java.util.List;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,7 @@ import com.grownited.repository.AgentRepository;
 import com.grownited.repository.InquiryRepository;
 import com.grownited.repository.PropertyRepository;
 import com.grownited.repository.UserRepository;
+import com.grownited.repository.BuyerInquiryRepository;
 
 
 
@@ -38,6 +40,8 @@ public class AgentController {
 
 	@Autowired
 	private AgentRepository agentRepository;
+	@Autowired
+	private BuyerInquiryRepository  inquiryRepo;
 	
 	@GetMapping("/Agentdetails")
 	
@@ -72,18 +76,18 @@ public class AgentController {
 		        long totalProperties = propertyRepository.count();
 		        long totalAgents = agentRepository.count();
 		        long totalUsers = userRepository.count();
-		        
-//		        long pendingInquiries = inquiryRepository.countByStatus("Pending");
+		        long totalInquiries = inquiryRepo.count();
+
 
 		        System.out.println("Total Properties: " + totalProperties);
 		        System.out.println("Total Agents: " + totalAgents);
 		        System.out.println("Total Users: " + totalUsers);
-//		        System.out.println("Pending Inquiries: " + pendingInquiries);
+		        model.addAttribute("pendingInquiries", totalInquiries);
 
+		        model.addAttribute("inquiryCount", totalInquiries);
 		        model.addAttribute("totalProperties", totalProperties);
 		        model.addAttribute("totalAgents", totalAgents);
 		        model.addAttribute("totalUsers", totalUsers);
-//		        model.addAttribute("pendingInquiries", pendingInquiries);
 		        
 		       		
 		return "AgentDashboard";

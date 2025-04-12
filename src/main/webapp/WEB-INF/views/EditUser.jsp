@@ -50,7 +50,6 @@
             	<option value="Buyer" ${user.role == 'Buyer' ? 'selected' : '' } > Buyer</option>
             	<option value="Seller" ${user.role == 'Seller' ? 'selected' : '' } > Seller</option>
             	<option value="Agent" ${user.role == 'Agent' ? 'selected' : '' } > Agent</option>
-            	<option value="Admin" ${user.role == 'Admin' ? 'selected' : '' } > Admin</option>
             </select> 
             
         </div>

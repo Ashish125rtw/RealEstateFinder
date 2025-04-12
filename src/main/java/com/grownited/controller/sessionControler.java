@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
 import com.cloudinary.Cloudinary;
+import com.grownited.entity.PropertyEntity;
 import com.grownited.entity.UserEntity;
+import com.grownited.repository.PropertyRepository;
 import com.grownited.repository.UserRepository;
 import com.grownited.service.MailService;
 
@@ -36,12 +38,20 @@ public class sessionControler {
 	
 	 @Autowired
 	private Cloudinary cloudinary;
+	 
+	@Autowired
+	private PropertyRepository repoproperty;
 
-	// Homepage
+
+	
 	@GetMapping({"homepage"})
-	public String homepage() {
-		return "homepage";
+	public String homepage(Model model) {
+	    List<PropertyEntity> properties = repoproperty.getAllProperties();
+	    System.out.println("Size: " + (properties != null ? properties.size() : "null"));
+	    model.addAttribute("properties", properties);
+	    return "homepage";
 	}
+
 	
 	// Signup Page
 	@GetMapping("signup")
@@ -204,6 +214,14 @@ public class sessionControler {
 		session.invalidate();
 		return "redirect:/login"; // Redirect to login page
 	}
+	
+	// unauthorised user alert
+	
+	@GetMapping("/access-denied")
+	public String accessDenied() {
+	    return "access-denied"; // Looks for access-denied.jsp in /WEB-INF/views/
+	}
+
 
 	// View User Details
 	@GetMapping("/viewUser/{id}")
@@ -240,6 +258,7 @@ public class sessionControler {
 
 	// Update User
 	@PostMapping("/updateUser")
+	
 	public String updateUser(@ModelAttribute UserEntity userEntity) {
 		repositoryUser.save(userEntity);  // Update user in the database
 		return "redirect:/ListUser";  // Redirect to user list
@@ -250,5 +269,9 @@ public class sessionControler {
 	public String privacy() {
 		return "privacy";
 	}
+	
+	
+	
+
 }
 

@@ -9,6 +9,9 @@
 
 <jsp:include page="AdminCss.jsp"></jsp:include>
 <link href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 <body>
 	<jsp:include page="AdminHeader.jsp"></jsp:include>
@@ -33,9 +36,8 @@
 				<div class="col-lg-3 col-md-6">
 					<div class="card info-card">
 						<div class="card-body">
-							<h5 class="card-title">Total Properties</h5>
+							<h5 class="card-title"><i class="fa-solid fa-building"></i> Total Properties</h5>
 							<h3>${totalProperties}</h3>
-							
 						</div>
 					</div>
 				</div>
@@ -43,8 +45,7 @@
 				<div class="col-lg-3 col-md-6">
 					<div class="card info-card">
 						<div class="card-body">
-							<h5 class="card-title">Total Agents</h5>
-							
+							<h5 class="card-title"><i class="fa-solid fa-user-tie"></i> Total Agents</h5>
 							<h2>${totalAgents}</h2>
 						</div>
 					</div>
@@ -53,9 +54,8 @@
 				<div class="col-lg-3 col-md-6">
 					<div class="card info-card">
 						<div class="card-body">
-							<h5 class="card-title">Total Users</h5>
+							<h5 class="card-title"><i class="fa-solid fa-users"></i> Total Users</h5>
 							<h3>${totalUsers}</h3>
-							
 						</div>
 					</div>
 				</div>
@@ -63,7 +63,7 @@
 				<div class="col-lg-3 col-md-6">
 					<div class="card info-card">
 						<div class="card-body">
-							<h5 class="card-title">Pending Inquiries</h5>
+							<h5 class="card-title"><i class="fa-solid fa-envelope"></i> Pending Inquiries</h5>
 							<h3>${pendingInquiries}</h3>
 							<h2>0</h2>
 						</div>
@@ -72,56 +72,8 @@
 				<!-- End Dashboard Cards -->
 
 			</div>
-
-			<!-- Recent Activities -->
-			<div class="row mt-4">
-				<div class="col-lg-6">
-					<div class="card">
-						<div class="card-body">
-							<h5 class="card-title">Recent User Inquiries</h5>
-							<table class="table table-bordered table-striped">
-								<thead class="table-dark">
-									<tr>
-										<th>ID</th>
-										<th>User</th>
-										<th>Message</th>
-										<th>Date</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${recentInquiries}" var="inquiry">
-										<tr>
-											<td>${inquiry.id}</td>
-											<td>${inquiry.userName}</td>
-											<td>${inquiry.message}</td>
-											<td>${inquiry.date}</td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-
-				<!-- Quick Links -->
-				<div class="col-lg-6">
-					<div class="card">
-						<div class="card-body">
-							<h5 class="card-title">Quick Links</h5>
-							<div class="list-group">
-								<a href="listProperties.jsp" class="list-group-item list-group-item-action">🏠 Manage Properties</a>
-								<a href="listAgents.jsp" class="list-group-item list-group-item-action">👤 Manage Agents</a>
-								<a href="listUsers.jsp" class="list-group-item list-group-item-action">👥 Manage Users</a>
-								<a href="inquiries.jsp" class="list-group-item list-group-item-action">📩 View Inquiries</a>
-								<a href="reports.jsp" class="list-group-item list-group-item-action">📊 Reports & Analytics</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- End Quick Links -->
-
-			</div>
-
+			<canvas id="myChart"></canvas>
+			
 		</section>
 	</main>
 
@@ -136,6 +88,52 @@
 			$('.table').DataTable(); // Apply pagination & sorting to tables
 		});
 	</script>
+	<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+
+    // Dynamic data from JSP
+    var labels = ['Total Properties', 'Total Agents', 'Total Users', 'Pending Inquiries'];
+    var dataValues = [
+        ${totalProperties}, 
+        ${totalAgents}, 
+        ${totalUsers}, 
+        ${pendingInquiries}
+    ];
+
+    var myChart = new Chart(ctx, {
+        type: 'bar', // Change to 'line', 'pie', etc.
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Dashboard Statistics',
+                data: dataValues,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+	
+	
 
 </body>
 </html>

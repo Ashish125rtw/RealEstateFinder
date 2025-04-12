@@ -34,6 +34,7 @@
 					<div class="card info-card">
 						<div class="card-body">
 							<h5 class="card-title">Total Properties</h5>
+							<h3>5</h3>
 							<h3>${totalProperties}</h3>
 						</div>
 					</div>
@@ -43,6 +44,7 @@
 					<div class="card info-card">
 						<div class="card-body">
 							<h5 class="card-title">Saved Properties</h5>
+							<h3>2</h3>
 							<h3>${savedProperties}</h3>
 						</div>
 					</div>
@@ -52,6 +54,7 @@
 					<div class="card info-card">
 						<div class="card-body">
 							<h5 class="card-title">Scheduled Visits</h5>
+							<h3>0</h3>
 							<h3>${scheduledVisits}</h3>
 						</div>
 					</div>

@@ -30,15 +30,15 @@
 		</a></li>
 
 		<li class="nav-item"><a class="nav-link collapsed"
-			href="ListClients"> <i class="bi-people-fill"></i> <span>Clients</span>
+			href="noData"> <i class="bi-people-fill"></i> <span>Clients</span>
 		</a></li>
 
 		<li class="nav-item"><a class="nav-link collapsed"
-			href="Listmessages"> <i class="bi-chat-dots-fill"></i> <span>Inquiries</span>
+			href="ListBuyerInquiry"> <i class="bi-chat-dots-fill"></i> <span>Inquiries</span>
 		</a></li>
 
 		<li class="nav-item"><a class="nav-link collapsed"
-			href="Reports"> <i class="bi-bar-chart-fill"></i> <span>Reports & Analytics</span>
+			href="ReportListBuyerInquiry"> <i class="bi-bar-chart-fill"></i> <span>Reports & Analytics</span>
 		</a></li>
 		<!-- End Reports Nav -->
 

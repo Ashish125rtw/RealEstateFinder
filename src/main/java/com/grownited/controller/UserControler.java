@@ -25,6 +25,10 @@ public class UserControler {
 		
 		return "ViewUser";
 	}
+	@GetMapping("no-data")
+    public String noDataPage() {
+        return "noData";  
+    }
 	
 	
 	

@@ -22,16 +22,11 @@
             </ul>
         </li>
 
-        <!-- Manage Inquiries -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="ManageInquiries">
-                <i class="bi bi-envelope"></i> <span>Manage Inquiries</span>
-            </a>
-        </li>
+       
 
         <!-- Payment & Transactions -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="MyPayments">
+            <a class="nav-link collapsed" href="noData">
                 <i class="bi bi-credit-card"></i> <span>Payment Management</span>
             </a>
         </li>

@@ -18,7 +18,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="savedProperties">
+            <a class="nav-link collapsed" href="noData">
                 <i class="bi bi-bookmark-fill"></i> <span>Saved Properties</span>
             </a>
         </li>
@@ -29,11 +29,6 @@
             </a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="scheduleVisit">
-                <i class="bi bi-calendar-event-fill"></i> <span>Schedule a Visit</span>
-            </a>
-        </li>
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="ListAgent">
@@ -43,7 +38,7 @@
 
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="purchaseHistory">
+            <a class="nav-link collapsed" href="noData">
                 <i class="bi bi-receipt-cutoff"></i> <span>Purchase History</span>
             </a>
         </li>
