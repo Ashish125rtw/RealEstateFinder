@@ -18,6 +18,8 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/datatables.net-bs5/css/dataTables.bootstrap5.min.css"
 	rel="stylesheet">
+	<!-- Favicon -->
+<link href="/assets/img/favicon.png" rel="icon">
 
 <style>
 body {

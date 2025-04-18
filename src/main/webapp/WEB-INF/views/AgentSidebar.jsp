@@ -36,6 +36,9 @@
 		<li class="nav-item"><a class="nav-link collapsed"
 			href="ListBuyerInquiry"> <i class="bi-chat-dots-fill"></i> <span>Inquiries</span>
 		</a></li>
+		<li class="nav-item"><a class="nav-link collapsed"
+			href="AgentGeneralInquiries"> <i class="bi-chat-dots-fill"></i> <span>General Inquiries</span>
+		</a></li>
 
 		<li class="nav-item"><a class="nav-link collapsed"
 			href="ReportListBuyerInquiry"> <i class="bi-bar-chart-fill"></i> <span>Reports & Analytics</span>

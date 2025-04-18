@@ -11,8 +11,8 @@
 <link href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.min.css" rel="stylesheet"/>
 </head>
 <body>
-	<jsp:include page="BuyerHeader.jsp"></jsp:include>
-	<jsp:include page="BuyerSidebar.jsp"></jsp:include>
+		<jsp:include page="BuyerHeader.jsp"></jsp:include>
+		<jsp:include page="BuyerSidebar.jsp"></jsp:include>
 
 	<main id="main" class="main">
 		<div class="pagetitle">
@@ -34,7 +34,7 @@
 					<div class="card info-card">
 						<div class="card-body">
 							<h5 class="card-title">Total Properties</h5>
-							<h3>5</h3>
+							
 							<h3>${totalProperties}</h3>
 						</div>
 					</div>
@@ -44,7 +44,7 @@
 					<div class="card info-card">
 						<div class="card-body">
 							<h5 class="card-title">Saved Properties</h5>
-							<h3>2</h3>
+							
 							<h3>${savedProperties}</h3>
 						</div>
 					</div>
@@ -55,7 +55,7 @@
 						<div class="card-body">
 							<h5 class="card-title">Scheduled Visits</h5>
 							<h3>0</h3>
-							<h3>${scheduledVisits}</h3>
+							<h3></h3>
 						</div>
 					</div>
 				</div>
@@ -70,16 +70,17 @@
 						<div class="card-body">
 							<h5 class="card-title">Quick Links</h5>
 							<div class="list-group">
-								<a href="ListProperty" class="list-group-item list-group-item-action">🏠 View Properties</a>
-								<a href="savedProperties" class="list-group-item list-group-item-action">💾 Saved Properties</a>
-								<a href="scheduleVisit" class="list-group-item list-group-item-action">📅 Schedule a Visit</a>
+								<a href="ListProperty" class="list-group-item list-group-item-action" target="_blank">🏠 View Properties</a>
+								<a href="BuyerFavorites" class="list-group-item list-group-item-action">💾 Saved Properties</a>
+								<a href="basic_inquiry" class="list-group-item list-group-item-action">📅 Schedule a Visit</a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<!-- End Quick Links -->
-
+				<canvas id="buyerChart" style="margin-top: 30px;"></canvas>
+				
 		</section>
 	</main>
 
@@ -91,9 +92,37 @@
 	<script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$('.table').DataTable(); // Apply pagination & sorting to tables
+			$('.table').DataTable(); 
 		});
 	</script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('buyerChart').getContext('2d');
+    const chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Total Properties', 'Saved Properties', 'Scheduled Visits'],
+            datasets: [{
+                label: 'Your Dashboard Overview',
+                data: [
+                    ${totalProperties},
+                    ${savedProperties},
+                    ${scheduledVisits}
+                ],
+                backgroundColor: ['#007bff', '#28a745', '#ffc107'],
+                borderColor: ['#0056b3', '#1c7430', '#e0a800'],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+</script>
+	
 
 </body>
 </html>

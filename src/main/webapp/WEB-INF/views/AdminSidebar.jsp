@@ -21,8 +21,7 @@
 				data-bs-parent="#sidebar-nav">
 				<li><a href="ListUser"><i class="bi bi-circle"></i> <span>View
 							All Users</span></a></li>
-				<li><a href="ApproveBlockUsers"><i class="bi bi-circle"></i>
-						<span>Approve/Block Users</span></a></li>
+				
 
 			</ul></li>
 
@@ -34,25 +33,12 @@
 		</a>
 			<ul id="properties-nav" class="nav-content collapse"
 				data-bs-parent="#sidebar-nav">
-				<li><a href="ApproveRejectListings"><i class="bi bi-circle"></i>
+				<li><a href="admin-pending-properties"><i class="bi bi-circle"></i>
 						<span>Approve/Reject Listings</span></a></li>
 				<li><a href="ListProperty"><i class="bi bi-circle"></i> <span>View
 							All Properties</span></a></li>
 			</ul></li>
 
-		<!-- Manage Transactions -->
-		<li class="nav-item"><a class="nav-link collapsed"
-			data-bs-toggle="collapse" href="#transactions-nav"> <i
-				class="bi bi-credit-card"></i> <span>Manage Transactions</span> <i
-				class="bi bi-chevron-down ms-auto"></i>
-		</a>
-			<ul id="transactions-nav" class="nav-content collapse"
-				data-bs-parent="#sidebar-nav">
-				<li><a href="noData"><i class="bi bi-circle"></i> <span>View
-							Payments</span></a></li>
-				<li><a href="noData"><i class="bi bi-circle"></i> <span>Refund
-							Requests</span></a></li>
-			</ul></li>
 
 		<!-- Reports & Analytics -->
 		<li class="nav-item"><a class="nav-link collapsed"
@@ -77,6 +63,19 @@
 			href="Listmessages"> <i class="bi bi-envelope"></i> <span>Homepage
 					Inquiries</span>
 		</a></li>
+		<!-- Manage Transactions -->
+		<li class="nav-item"><a class="nav-link collapsed"
+			data-bs-toggle="collapse" href="#transactions-nav"> <i
+				class="bi bi-credit-card"></i> <span>Manage Transactions</span> <i
+				class="bi bi-chevron-down ms-auto"></i>
+		</a>
+			<ul id="transactions-nav" class="nav-content collapse"
+				data-bs-parent="#sidebar-nav">
+				<li><a href="noData"><i class="bi bi-circle"></i> <span>View
+							Payments</span></a></li>
+				<li><a href="noData"><i class="bi bi-circle"></i> <span>Refund
+							Requests</span></a></li>
+			</ul></li>
 
 		<!-- Customer Support Panel -->
 		<li class="nav-item"><a class="nav-link collapsed"
@@ -86,9 +85,9 @@
 		</a>
 			<ul id="support-nav" class="nav-content collapse"
 				data-bs-parent="#sidebar-nav">
-				<li><a href="ViewComplaints"><i class="bi bi-circle"></i> <span>View
+				<li><a href="noData"><i class="bi bi-circle"></i> <span>View
 							Complaints & Disputes</span></a></li>
-				<li><a href="ContactSupport"><i class="bi bi-circle"></i> <span>Contact
+				<li><a href="noData"><i class="bi bi-circle"></i> <span>Contact
 							Support Team</span></a></li>
 			</ul></li>
 

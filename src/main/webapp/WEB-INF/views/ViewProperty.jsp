@@ -11,6 +11,11 @@
 <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
 	rel="stylesheet">
 <script src="assets/js/bootstrap.bundle.min.js"></script>
+<!-- Favicons -->
+<link href="assets/img/favicon.png" rel="icon">
+<!-- Favicon -->
+<link href="/assets/img/favicon.png" rel="icon">
+
 </head>
 <body>
 	<header id="header" class="header fixed-top d-flex align-items-center">
@@ -35,6 +40,15 @@
 			</nav>
 		</div>
 
+	<c:if test="${sessionScope.user != null && sessionScope.user.role == 'Buyer'}">
+    <form action="/save-favorite/${property.propertyId}" method="post" style="display:inline;">
+        <button type="submit" class="btn btn-outline-danger">
+            ❤️ Add to Favorites
+        </button>
+    </form>
+</c:if>
+	
+		
 		<section class="section">
 			<div class="row">
 				<div class="col-lg-8">

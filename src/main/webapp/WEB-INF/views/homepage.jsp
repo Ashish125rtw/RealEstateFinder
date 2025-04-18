@@ -152,7 +152,7 @@ a {
 .service-card {
 	text-align: center;
 	padding: 30px;
-	background-color: white;
+	background-color: #e6ffff;
 	border-radius: 20px;
 	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 	transition: transform 0.3s ease;
@@ -196,7 +196,7 @@ a {
 	<!-- Carousel Section -->
 	<div class="carousel-container">
 		<div id="propertyCarousel" class="carousel slide"
-			data-bs-ride="carousel" data-bs-interval="4000">
+			data-bs-ride="carousel" data-bs-interval="2000">
 			<div class="carousel-inner">
 				<c:forEach var="property" items="${properties}" varStatus="status">
 					<c:if test="${status.index % 3 == 0}">

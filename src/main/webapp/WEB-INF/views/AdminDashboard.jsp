@@ -65,7 +65,7 @@
 						<div class="card-body">
 							<h5 class="card-title"><i class="fa-solid fa-envelope"></i> Pending Inquiries</h5>
 							<h3>${pendingInquiries}</h3>
-							<h2>0</h2>
+							<h2>11</h2>
 						</div>
 					</div>
 				</div>
@@ -91,48 +91,89 @@
 	<script>
     var ctx = document.getElementById('myChart').getContext('2d');
 
-    // Dynamic data from JSP
     var labels = ['Total Properties', 'Total Agents', 'Total Users', 'Pending Inquiries'];
     var dataValues = [
         ${totalProperties}, 
         ${totalAgents}, 
         ${totalUsers}, 
-        ${pendingInquiries}
+        11
     ];
 
     var myChart = new Chart(ctx, {
-        type: 'bar', // Change to 'line', 'pie', etc.
+        type: 'bar',
         data: {
             labels: labels,
             datasets: [{
                 label: 'Dashboard Statistics',
                 data: dataValues,
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)'
+                    'rgba(255, 99, 132, 0.6)',   
+                    'rgba(0, 123, 255, 0.6)',   
+                    'rgba(40, 167, 69, 0.6)',   
+                    'rgba(255, 193, 7, 0.6)'    
                 ],
                 borderColor: [
                     'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)'
+                    'rgba(0, 123, 255, 1)',
+                    'rgba(40, 167, 69, 1)',
+                    'rgba(255, 193, 7, 1)'
                 ],
-                borderWidth: 1
+                borderWidth: 2,
+                borderRadius: 6,
+                barPercentage: 0.7,
+                categoryPercentage: 0.6
             }]
         },
         options: {
             responsive: true,
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    ticks: {
+                        color: '#333', // y-axis label color
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        }
+                    },
+                    grid: {
+                        color: '#ddd'
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: '#333',
+                        font: {
+                            size: 14,
+                            weight: 'bold'
+                        }
+                    },
+                    grid: {
+                        color: '#eee'
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#333',
+                        font: {
+                            size: 16,
+                            weight: 'bold'
+                        }
+                    }
+                },
+                tooltip: {
+                    backgroundColor: '#000',
+                    titleColor: '#fff',
+                    bodyColor: '#fff',
+                    borderColor: '#777',
+                    borderWidth: 1
                 }
             }
         }
     });
 </script>
-	
 	
 
 </body>
